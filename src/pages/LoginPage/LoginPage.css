@@ -1,0 +1,58 @@
+.content{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.body{
+    display: flex;
+    flex-direction: row;
+}
+
+.left{
+
+    flex: 3;
+    width:400px;
+}
+
+.right{
+
+    flex: 3;
+    max-width:400px;
+}
+
+.extra{
+    border: 0.5px grey;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    align-items: center;
+    padding: 20px;
+}
+
+.inside{
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.space{
+
+    height:20px;
+}
+
+header{
+
+    height:100px;
+}
+
+footer{
+    display: flex;
+    align-items: flex-end;
+}
+
+a{
+    display: flex;
+    align-items:baseline;
+}
