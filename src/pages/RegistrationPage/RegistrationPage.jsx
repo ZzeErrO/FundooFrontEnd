@@ -1,4 +1,5 @@
 import React from  'react';
+import { Redirect } from "react-router-dom";
 import './RegistrationPage.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -19,8 +20,14 @@ export default class registrationPage extends React.Component{
             LNError:false,
             EError: false,
             PError: false, 
-            CPError:false
+            CPError:false,
+            redirect: null
           }
+      }
+
+      signinpage = () => {
+
+        this.setState({ redirect: "/login"});
       }
 
       validation = () =>{
@@ -83,6 +90,11 @@ export default class registrationPage extends React.Component{
       }
 
     render(){
+
+        if(this.state.redirect){
+
+          return <Redirect to= {this.state.redirect} />
+        }
         return <div class="content">
           <div class="header"></div>
           <div class = 'body'>
@@ -156,7 +168,7 @@ export default class registrationPage extends React.Component{
               Use 8 or more characters with a mix of letters, numbers & symbols
             <div class = "space"></div>
             <div class= "inside">
-            <a href = "../pages/LoginPage/LoginPage.jsx">Sign In Instead</a>
+            <a onClick = {this.signinpage}> Sign In Instead </a>
             <div class = "spacewidth3"></div>
             <Button variant="contained" color="primary" onClick = {this.Next}>  Next </Button>
             </div>

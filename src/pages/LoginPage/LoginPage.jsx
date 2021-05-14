@@ -1,4 +1,5 @@
 import React from  'react';
+import { Redirect } from "react-router-dom";
 import './LoginPage.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -11,8 +12,14 @@ export default class LoginPage extends React.Component{
           Email: '',
           Password: '',
           EError: false,
-          PError: false 
+          PError: false,
+          redirect: null
         }
+      }
+
+      signinpage = () => {
+
+        this.setState({ redirect: "/registration"});
       }
 
       validation = () =>{
@@ -54,6 +61,13 @@ export default class LoginPage extends React.Component{
       }
 
     render(){
+
+      if(this.state.redirect){
+
+        return <Redirect to= {this.state.redirect} />
+      }
+
+
         return <div class="content">
           <div class="header">
             
@@ -107,7 +121,7 @@ export default class LoginPage extends React.Component{
             </div>
             <div class = "space"></div>
             <div class= "inside">
-            <a href = "../pages/RegistrationPage/RegistrationPage.jsx">Create Account</a>
+            <a onClick = {this.signinpage}>Create Account</a>
             <div class = "spacewidth"></div>
             <Button variant="contained" color= "primary" onClick = {this.Next}>  Sign In </Button>
             </div>
