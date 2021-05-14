@@ -63,14 +63,20 @@
     flex-direction: column;
 }
 
+.image{
+
+    height:100px;
+    width: 150px;
+}
+
 .space{
 
     height:20px;
 }
 
-header{
+.header{
 
-    height:150px;
+    height:30px;
 }
 
 footer{

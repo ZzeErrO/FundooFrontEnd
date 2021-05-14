@@ -2,6 +2,7 @@ import React from  'react';
 import './LoginPage.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import fundoo from '../../assets/fundoo.jpg';
 
 export default class LoginPage extends React.Component{
     constructor(props) {
@@ -29,54 +30,66 @@ export default class LoginPage extends React.Component{
       Next = () =>{
 
         var isValidated = this.validation();
+        console.log(this.state.Email);
+        console.log(this.state.Password);
         if(isValidated){
           alert("validation successful");
         }
-        else
+        if(!isValidated)
         {
           alert("validation unsuccessful");
         }
       }
 
+      change = (e) =>{
+
+        console.log(e.target.value);
+        this.setState({Email: e.target.value});
+      }
+
       handleChange = (e) => {
 
         console.log(e.target.value);
-        this.Next();
-        this.setState({email: e.target.value});
+        this.setState({Password: e.target.value});
       }
 
     render(){
         return <div class="content">
-          <header></header>
+          <div class="header"></div>
         <div class = 'body'>
           <div class = "left"></div>
           <div>
             <div class = "extra">
-            <div><img src = "./assets/fundoo.jpg" alt= "fundoo"/></div>
+            <div><img class = "image" src = {fundoo} alt= "fundoo"/></div>
               <div><h2>Sign In</h2></div>
                   <div>Use Your Fundoo Account</div>
             
             <div>
+            <div class = "space"></div>
             <TextField
               error = {this.state.EError}
               label = "Enter Email"
-              type = "text"
+              type = "Email"
               name = "Email"
               variant = "outlined"
-              onChange = {e => this.handleChange(e)}
-              helperTest = {this.state.EError ? "Enter Email Address" : ''}
+              onChange = {e => this.change(e)}
+              helperText = {this.state.EError ? "Enter Email Address" : ''}
               />
+              <div class = "space"></div>
               <a href= "www.react.com">Forgot Email </a>
+              <div class = "space"></div>
               <TextField
               error = {this.state.PError}
               label = "Enter Password"
-              type = "password"
+              type = "Password"
               name = "Password"
               variant = "outlined"
               onChange = {e => this.handleChange(e)}
-              helperTest = {this.state.EError ? "Enter Password" : ''}
+              helperText = {this.state.PError ? "Enter Password" : ''}
               />
+              <div class = "space"></div>
             <a href= "www.react.com">Forgot Password </a>
+            <div class = "space"></div>
             </div>
             <div>
             <p>
@@ -85,7 +98,7 @@ export default class LoginPage extends React.Component{
             </div>
             <div class= "inside">
             <a href = "../pages/RegistrationPage/RegistrationPage.jsx">Create Account</a>
-            <Button variant="contained" color="primary">  Sign In </Button>
+            <Button variant="contained" color="primary" onClick = {this.Next}>  Sign In </Button>
             </div>
             </div>
           </div>
