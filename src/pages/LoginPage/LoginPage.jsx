@@ -55,16 +55,25 @@ export default class LoginPage extends React.Component{
 
     render(){
         return <div class="content">
-          <div class="header"></div>
+          <div class="header">
+            
+          </div>
         <div class = 'body'>
           <div class = "left"></div>
           <div>
             <div class = "extra">
-            <div><img class = "image" src = {fundoo} alt= "fundoo"/></div>
-              <div><h2>Sign In</h2></div>
-                  <div>Use Your Fundoo Account</div>
+            <div class = "fundoo">
+            <h3 id = "f">F</h3>
+            <h3 id = "u">U</h3>
+            <h3 id = "n">N</h3>
+            <h3 id = "d">D</h3>
+            <h3 id = "o">O</h3>
+            <h3 id = "x">O</h3>
+            </div>
+              <div class = "signin">Sign In</div>
+                  <div class = "data">Use Your Fundoo Account</div>
             
-            <div>
+            <div class = "textinput">
             <div class = "space"></div>
             <TextField
               error = {this.state.EError}
@@ -76,7 +85,7 @@ export default class LoginPage extends React.Component{
               helperText = {this.state.EError ? "Enter Email Address" : ''}
               />
               <div class = "space"></div>
-              <a href= "www.react.com">Forgot Email </a>
+              <a href= "www.react.com">Forgot Email? </a>
               <div class = "space"></div>
               <TextField
               error = {this.state.PError}
@@ -88,7 +97,7 @@ export default class LoginPage extends React.Component{
               helperText = {this.state.PError ? "Enter Password" : ''}
               />
               <div class = "space"></div>
-            <a href= "www.react.com">Forgot Password </a>
+            <a href= "www.react.com">Forgot Password? </a>
             <div class = "space"></div>
             </div>
             <div>
@@ -98,13 +107,14 @@ export default class LoginPage extends React.Component{
             </div>
             <div class= "inside">
             <a href = "../pages/RegistrationPage/RegistrationPage.jsx">Create Account</a>
-            <Button variant="contained" color="primary" onClick = {this.Next}>  Sign In </Button>
+            <div class = "spacewidth"></div>
+            <Button variant="contained" color= "primary" onClick = {this.Next}>  Sign In </Button>
             </div>
             </div>
           </div>
           <div class = "right"></div>
         </div>
-        <footer>Language:English</footer>
+        <footer></footer>
         </div>
     }
 }
