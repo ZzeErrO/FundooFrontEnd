@@ -101,10 +101,11 @@ export default class LoginPage extends React.Component{
             <div class = "space"></div>
             </div>
             <div>
-            <p>
-            Not your computer? Use a private browsing window to sign in. <a href = "www.google.com">Learn more</a>
+           
+            Not your computer? Use a private browsing window to sign <p> in. <a href = "www.google.com">Learn more</a>
             </p>
             </div>
+            <div class = "space"></div>
             <div class= "inside">
             <a href = "../pages/RegistrationPage/RegistrationPage.jsx">Create Account</a>
             <div class = "spacewidth"></div>

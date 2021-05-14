@@ -2,7 +2,7 @@ import React from  'react';
 import './RegistrationPage.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import fundoo from '../../assets/fundoo.jpg';
+import fundoo4 from '../../assets/fundoo4.svg';
 import fundoo2 from '../../assets/fundoo2.jpg';
 import fundoo3 from '../../assets/fundoo3.jpg';
 
@@ -89,9 +89,16 @@ export default class registrationPage extends React.Component{
           <div class = "left"></div>
           <div class= "form">
           <div class= "info">
-          <img class = "image" src = {fundoo} alt= "fundoo"/>
-            <div><h2>Create Your Fundoo Account</h2></div>
-           
+          <div class = "fundoo">
+            <h3 id = "f">F</h3>
+            <h3 id = "u">U</h3>
+            <h3 id = "n">N</h3>
+            <h3 id = "d">D</h3>
+            <h3 id = "o">O</h3>
+            <h3 id = "x">O</h3>
+            </div>
+            <div class = "signin">Create Your Fundoo Account</div>
+            <div class = "space"></div>
             <div class="names">
             <TextField
               error = {this.state.FNError}
@@ -102,6 +109,7 @@ export default class registrationPage extends React.Component{
               onChange = {e => this.handleChangeFirstName(e)}
               helperText = {this.state.FNError ? "First Name" : ''}
               />
+              <div class = "spacewidth2"></div>
             <TextField
               error = {this.state.LNError}
               label = "Last Name"
@@ -122,6 +130,7 @@ export default class registrationPage extends React.Component{
               onChange = {e => this.handleChangeEmail(e)}
               helperText = {this.state.EError ? "Enter Email Address" : ''}
               />
+              You can use letters, numbers & periods
             <div class = "space"></div>
             <div class= "names">
             <TextField
@@ -132,7 +141,8 @@ export default class registrationPage extends React.Component{
               variant = "outlined"
               onChange = {e => this.handleChangePassword(e)}
               helperText = {this.state.PError ? "Enter Password" : ''}
-              />            
+              />
+              <div class = "spacewidth2"></div>            
             <TextField
               error = {this.state.CPError}
               label = "Confirm"
@@ -141,17 +151,22 @@ export default class registrationPage extends React.Component{
               variant = "outlined"
               onChange = {e => this.handleChangeConfirmPassword(e)}
               helperText = {this.state.CPError ? "Confirm Password" : ''}
-              />            </div>
+              />            
+              </div>
+              Use 8 or more characters with a mix of letters, numbers & symbols
             <div class = "space"></div>
             <div class= "inside">
-            <a href = "../pages/LoginPage/LoginPage.jsx">Sign In</a>
-            <Button variant="contained" color="primary" onClick = {this.Next}>  Create Account </Button>
+            <a href = "../pages/LoginPage/LoginPage.jsx">Sign In Instead</a>
+            <div class = "spacewidth3"></div>
+            <Button variant="contained" color="primary" onClick = {this.Next}>  Next </Button>
             </div>
             <div class = "space"></div>
             </div>
-            <img class= "image" src = {fundoo3} alt = "fundooAccount" />
-            <img class= "image" src = {fundoo2} alt = "fundooCreate" />
-            
+            <div class = "spacewidth"></div>
+            <div class = "content">
+            <img class= "image" src = {fundoo4} alt = "fundooAccount" />
+            One account. All of Fundoo working for you.
+            </div>
           </div>
           <div class = "right"></div>
               </div>

@@ -7,8 +7,10 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 function App() {
   return (
       <BrowserRouter>
-      <Route path= "/login" component={LoginPage} />
-      <Route path= "/registration" component={Registration_Page} />
+        <Switch>
+          <Route path= "/login" component={LoginPage} />
+          <Route path= "/registration" component={Registration_Page} />
+        </Switch>
       </BrowserRouter>
   );
 }
