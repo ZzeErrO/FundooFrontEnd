@@ -99,7 +99,6 @@ export default class LoginPage extends React.Component{
               helperText = {this.state.EError ? "Enter Email Address" : ''}
               />
               <div class = "space"></div>
-              <a href= "www.react.com">Forgot Email? </a>
               <div class = "space"></div>
               <TextField
               error = {this.state.PError}

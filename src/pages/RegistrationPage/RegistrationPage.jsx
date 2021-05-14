@@ -6,6 +6,10 @@ import TextField from '@material-ui/core/TextField';
 import fundoo4 from '../../assets/fundoo4.svg';
 import fundoo2 from '../../assets/fundoo2.jpg';
 import fundoo3 from '../../assets/fundoo3.jpg';
+import Userservice from '../../services/userservice';
+
+
+const axios_service = new Userservice();
 
 export default class registrationPage extends React.Component{
     constructor(props) {
@@ -50,12 +54,30 @@ export default class registrationPage extends React.Component{
         var isValidated = this.validation();
         console.log(this.state.Email);
         console.log(this.state.Password);
-        if(isValidated){
-          alert("Account Created successful");
+        if(!isValidated){
+          
+          console.log("Account Creation unsuccessful");
         }
-        if(!isValidated)
+        if(isValidated)
         {
-          alert("Account Creation unsuccessful");
+          let data = {
+            "firstName": this.state.FirstName,
+            "lastName": this.state.LastName,
+            "email": this.state.Email,
+            "service": "advance",
+            "password": this.state.Password
+          };
+          alert("Account Created successful");
+          axios_service.Registration(data).then((result) => {
+              console.log(result);
+              if(result.data.data.success){
+                console.log("***********************success*******************")
+                //this.props.userdata_update(result.data.data)
+                localStorage.setItem('user_details', result.data.data);
+                this.setState({redirect: "/Dashboard"});
+              }
+
+          })
         }
       }
 
@@ -90,7 +112,6 @@ export default class registrationPage extends React.Component{
       }
 
     render(){
-
         if(this.state.redirect){
 
           return <Redirect to= {this.state.redirect} />
@@ -118,6 +139,8 @@ export default class registrationPage extends React.Component{
               type = "text"
               name = "First Name"
               variant = "outlined"
+              size = "small"
+              fullWidth = "true"
               onChange = {e => this.handleChangeFirstName(e)}
               helperText = {this.state.FNError ? "First Name" : ''}
               />
@@ -128,6 +151,7 @@ export default class registrationPage extends React.Component{
               type = "text"
               name = "Last Name"
               variant = "outlined"
+              size = "small"
               onChange = {e => this.handleChangeLastName(e)}
               helperText = {this.state.LNError ? "Last Name" : ''}
               />
@@ -139,6 +163,7 @@ export default class registrationPage extends React.Component{
               type = "Email"
               name = "Email"
               variant = "outlined"
+              size = "small"
               onChange = {e => this.handleChangeEmail(e)}
               helperText = {this.state.EError ? "Enter Email Address" : ''}
               />
@@ -151,6 +176,7 @@ export default class registrationPage extends React.Component{
               type = "Password"
               name = "Password"
               variant = "outlined"
+              size = "small"
               onChange = {e => this.handleChangePassword(e)}
               helperText = {this.state.PError ? "Enter Password" : ''}
               />
@@ -161,6 +187,7 @@ export default class registrationPage extends React.Component{
               type = "Password"
               name = "Password"
               variant = "outlined"
+              size = "small"
               onChange = {e => this.handleChangeConfirmPassword(e)}
               helperText = {this.state.CPError ? "Confirm Password" : ''}
               />            
