@@ -8,13 +8,12 @@ import fundoo2 from '../../assets/fundoo2.jpg';
 import fundoo3 from '../../assets/fundoo3.jpg';
 import Userservice from '../../services/userservice';
 
-
 const axios_service = new Userservice();
 
 export default class registrationPage extends React.Component{
     constructor(props) {
         super(props);
-        this.state = this.state = {
+        this.state = {
             FirstName:'',
             LastName:'',
             Email: '',
@@ -140,7 +139,6 @@ export default class registrationPage extends React.Component{
               name = "First Name"
               variant = "outlined"
               size = "small"
-              fullWidth = "true"
               onChange = {e => this.handleChangeFirstName(e)}
               helperText = {this.state.FNError ? "First Name" : ''}
               />
@@ -169,7 +167,8 @@ export default class registrationPage extends React.Component{
               />
               You can use letters, numbers & periods
             <div class = "space"></div>
-            <div class= "names">
+            <div class= "names">'
+            <div class = "test">
             <TextField
               error = {this.state.PError}
               label = "Password"
@@ -180,6 +179,7 @@ export default class registrationPage extends React.Component{
               onChange = {e => this.handleChangePassword(e)}
               helperText = {this.state.PError ? "Enter Password" : ''}
               />
+              </div>
               <div class = "spacewidth2"></div>            
             <TextField
               error = {this.state.CPError}
@@ -202,7 +202,7 @@ export default class registrationPage extends React.Component{
             <div class = "space"></div>
             </div>
             <div class = "spacewidth"></div>
-            <div class = "content">
+            <div class = "content2">
             <img class= "image" src = {fundoo4} alt = "fundooAccount" />
             One account. All of Fundoo working for you.
             </div>

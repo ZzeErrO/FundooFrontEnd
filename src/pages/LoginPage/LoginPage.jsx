@@ -17,7 +17,7 @@ export default class LoginPage extends React.Component{
         }
       }
 
-      signinpage = () => {
+      signuppage = () => {
 
         this.setState({ redirect: "/registration"});
       }
@@ -120,7 +120,7 @@ export default class LoginPage extends React.Component{
             </div>
             <div class = "space"></div>
             <div class= "inside">
-            <a onClick = {this.signinpage}>Create Account</a>
+            <a onClick = {this.signuppage}>Create Account</a>
             <div class = "spacewidth"></div>
             <Button variant="contained" color= "primary" onClick = {this.Next}>  Sign In </Button>
             </div>

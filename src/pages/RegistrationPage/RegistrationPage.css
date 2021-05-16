@@ -4,6 +4,12 @@
     flex-direction: column;
 }
 
+.content2{
+
+    display: flex;
+    flex-direction: column;
+}
+
 .body{
     display: flex;
     flex-direction: row;
@@ -113,4 +119,16 @@ a{
     text-align: left;
     border: 0;
     font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
+}
+
+.test{
+    
+    width: 100px;
+}
+
+@media screen and (max-width: 600px){
+    .content2{
+
+        display: none;
+    }
 }
