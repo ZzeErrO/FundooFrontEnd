@@ -115,47 +115,53 @@ export default class registrationPage extends React.Component{
 
           return <Redirect to= {this.state.redirect} />
         }
+
         return <div class="content">
-          <div class="header"></div>
-          <div class = 'body'>
-          <div class = "left"></div>
-          <div class= "form">
-          <div class= "info">
-          <div class = "fundoo">
-            <h3 id = "f">F</h3>
-            <h3 id = "u">U</h3>
-            <h3 id = "n">N</h3>
-            <h3 id = "d">D</h3>
-            <h3 id = "o">O</h3>
-            <h3 id = "x">O</h3>
-            </div>
-            <div class = "signin">Create Your Fundoo Account</div>
-            <div class = "space"></div>
-            <div class="names">
-            <TextField
-              error = {this.state.FNError}
-              label = "First Name"
-              type = "text"
-              name = "First Name"
-              variant = "outlined"
-              size = "small"
-              onChange = {e => this.handleChangeFirstName(e)}
-              helperText = {this.state.FNError ? "First Name" : ''}
-              />
-              <div class = "spacewidth2"></div>
-            <TextField
-              error = {this.state.LNError}
-              label = "Last Name"
-              type = "text"
-              name = "Last Name"
-              variant = "outlined"
-              size = "small"
-              onChange = {e => this.handleChangeLastName(e)}
-              helperText = {this.state.LNError ? "Last Name" : ''}
-              />
-            </div>
-            <div class = "space"></div>
-            <TextField
+          
+          <div class = 'formbody'>
+          
+            <div class= "formleft">
+
+              <div class = "fundoo">
+              <h3 id = "f">F</h3>
+              <h3 id = "u">U</h3>
+              <h3 id = "n">N</h3>
+              <h3 id = "d">D</h3>
+              <h3 id = "o">O</h3>
+              <h3 id = "x">O</h3>
+              </div>
+
+              <div class = "signin">Create Your Fundoo Account</div>
+
+              <div class = "space"></div>
+
+              <div class="names">
+                <TextField
+                error = {this.state.FNError}
+                label = "First Name"
+                type = "text"
+                name = "First Name"
+                variant = "outlined"
+                size = "small"
+                onChange = {e => this.handleChangeFirstName(e)}
+                helperText = {this.state.FNError ? "First Name" : ''}
+                />
+
+                <TextField
+                error = {this.state.LNError}
+                label = "Last Name"
+                type = "text"
+                name = "Last Name"
+                variant = "outlined"
+                size = "small"
+                onChange = {e => this.handleChangeLastName(e)}
+                helperText = {this.state.LNError ? "Last Name" : ''}
+                />
+              </div>
+
+              <div class = "space"></div>
+
+              <TextField
               error = {this.state.EError}
               label = "Email"
               type = "Email"
@@ -165,51 +171,60 @@ export default class registrationPage extends React.Component{
               onChange = {e => this.handleChangeEmail(e)}
               helperText = {this.state.EError ? "Enter Email Address" : ''}
               />
+
               You can use letters, numbers & periods
-            <div class = "space"></div>
-            <div class= "names">'
-            <div class = "test">
-            <TextField
-              error = {this.state.PError}
-              label = "Password"
-              type = "Password"
-              name = "Password"
-              variant = "outlined"
-              size = "small"
-              onChange = {e => this.handleChangePassword(e)}
-              helperText = {this.state.PError ? "Enter Password" : ''}
-              />
+
+              <div class = "space"></div>
+
+              <div class= "names">
+                <TextField
+                error = {this.state.PError}
+                label = "Password"
+                type = "Password"
+                name = "Password"
+                variant = "outlined"
+                size = "small"
+                onChange = {e => this.handleChangePassword(e)}
+                helperText = {this.state.PError ? "Enter Password" : ''}
+                />   
+
+                <TextField
+                error = {this.state.CPError}
+                label = "Confirm"
+                type = "Password"
+                name = "Password"
+                variant = "outlined"
+                size = "small"
+                onChange = {e => this.handleChangeConfirmPassword(e)}
+                helperText = {this.state.CPError ? "Confirm Password" : ''}
+                />            
               </div>
-              <div class = "spacewidth2"></div>            
-            <TextField
-              error = {this.state.CPError}
-              label = "Confirm"
-              type = "Password"
-              name = "Password"
-              variant = "outlined"
-              size = "small"
-              onChange = {e => this.handleChangeConfirmPassword(e)}
-              helperText = {this.state.CPError ? "Confirm Password" : ''}
-              />            
+              
+                Use 8 or more characters with a mix of letters, numbers & symbols
+
+                <div class = "space"></div>
+
+              <div class= "buttons">
+
+                <a onClick = {this.signinpage}> Sign In Instead </a>
+                <div class = "spacewidth3"></div>
+                <Button variant="contained" color="primary" onClick = {this.Next}>  Next </Button>
+
               </div>
-              Use 8 or more characters with a mix of letters, numbers & symbols
-            <div class = "space"></div>
-            <div class= "inside">
-            <a onClick = {this.signinpage}> Sign In Instead </a>
-            <div class = "spacewidth3"></div>
-            <Button variant="contained" color="primary" onClick = {this.Next}>  Next </Button>
+
             </div>
-            <div class = "space"></div>
+
+            <div class = "formright">
+
+              <img id= "image" src = {fundoo4} alt = "fundooAccount" />
+                One account. All of Fundoo working for you.
+
             </div>
-            <div class = "spacewidth"></div>
-            <div class = "content2">
-            <img class= "image" src = {fundoo4} alt = "fundooAccount" />
-            One account. All of Fundoo working for you.
-            </div>
+
           </div>
-          <div class = "right"></div>
-              </div>
-        <footer></footer>
+          
         </div>
+        
+        
     }
 }
