@@ -17,10 +17,20 @@ export default class registrationPage extends React.Component{
           }
       }
 
+      handleChange = (e) =>{
+          this.setState()
+      }
+
       render(){
         return <div className = "NoteBody">
-            Note
+            <div className = "textfieldinput">
+                <TextField
+                variant = "outlined"
+                size = "small"
+                onClick = {e => this.handleChange(e)}
+                />
             </div>
+        </div>
       }
 
     }

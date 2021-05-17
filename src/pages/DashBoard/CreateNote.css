@@ -1,4 +1,12 @@
 .NoteBody{
 
     background-color: white;
+    margin-top: 20px;
+}
+
+.textfieldinput{
+
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
 }

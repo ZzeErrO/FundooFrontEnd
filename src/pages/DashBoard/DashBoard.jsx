@@ -26,7 +26,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 
-
+import Input from '@material-ui/core/Input';
 
 const drawerWidth = 240;
 
@@ -60,10 +60,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     backgroundColor: "#f1f3f4",
     height: "50px",
-    marginLeft: "50px",
+    marginLeft: "100px",
     borderRadius: "8px",
     position: 'relative',
-    width: "400px",
+    width: "750px",
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -166,8 +166,8 @@ export default function MiniDrawer() {
 
           <div className={classes.search}>
             
-              <SearchIcon/>
-            
+              <SearchIcon class = "searchIcon"/>
+             
             <InputBase
               placeholder="Search"
               classes={{
@@ -212,7 +212,10 @@ export default function MiniDrawer() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <CreateNote/>
+
+        <div className = "textfieldinput">
+        <Input placeholder="Take a Note.." inputProps={{ 'aria-label': 'description' }} />        
+        </div>
       </main>
     </div>
   );

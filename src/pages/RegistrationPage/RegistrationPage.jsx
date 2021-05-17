@@ -116,13 +116,13 @@ export default class registrationPage extends React.Component{
           return <Redirect to= {this.state.redirect} />
         }
 
-        return <div class="content">
+        return <div className="content">
           
-          <div class = 'formbody'>
+          <div className = 'formbody'>
           
-            <div class= "formleft">
+            <div className= "formleft">
 
-              <div class = "fundoo">
+              <div className = "fundoo">
               <h3 id = "f">F</h3>
               <h3 id = "u">U</h3>
               <h3 id = "n">N</h3>
@@ -131,11 +131,11 @@ export default class registrationPage extends React.Component{
               <h3 id = "x">O</h3>
               </div>
 
-              <div class = "signin">Create Your Fundoo Account</div>
+              <div className = "signin">Create Your Fundoo Account</div>
 
-              <div class = "space"></div>
+              <div className = "space"></div>
 
-              <div class="names">
+              <div className="names">
                 <TextField
                 error = {this.state.FirstNameError}
                 label = "First Name"
@@ -159,7 +159,7 @@ export default class registrationPage extends React.Component{
                 />
               </div>
 
-              <div class = "space"></div>
+              <div className = "space"></div>
 
               <TextField
               error = {this.state.EmailError}
@@ -174,9 +174,9 @@ export default class registrationPage extends React.Component{
 
               You can use letters, numbers & periods
 
-              <div class = "space"></div>
+              <div className = "space"></div>
 
-              <div class= "names">
+              <div className= "names">
                 <TextField
                 error = {this.state.PasswordError}
                 label = "Password"
@@ -202,19 +202,19 @@ export default class registrationPage extends React.Component{
               
                 Use 8 or more characters with a mix of letters, numbers & symbols
 
-                <div class = "space"></div>
+                <div className = "space"></div>
 
-              <div class= "buttons">
+              <div className= "buttons">
 
                 <a onClick = {this.signinpage}> Sign In Instead </a>
-                <div class = "spacewidth3"></div>
+                <div className = "spacewidth3"></div>
                 <Button variant="contained" color="primary" onClick = {this.Next}>  Next </Button>
 
               </div>
 
             </div>
 
-            <div class = "formright">
+            <div className = "formright">
 
               <img id= "image" src = {fundoo4} alt = "fundooAccount" />
                 One account. All of Fundoo working for you.
