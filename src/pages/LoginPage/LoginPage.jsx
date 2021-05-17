@@ -52,12 +52,8 @@ export default class LoginPage extends React.Component{
           alert("validation successful");
           axios_service.Login(data).then((result) => {
               console.log(result);
-              if(result.data.data.success){
-                console.log("***********************success*******************")
-                //this.props.userdata_update(result.data.data)
-                localStorage.setItem('user_details', result.data.data);
-                this.setState({redirect: "/Dashboard"});
-              }
+              console.log(result.data.data.success);
+              
             })
           }
 

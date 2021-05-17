@@ -1,0 +1,57 @@
+.content2{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+
+    display: flex;
+    flex-direction: row;
+}
+
+.fundoo{
+
+    display: flex;
+    flex-direction: row;
+}
+
+
+.body2{
+
+    display: flex;
+    flex-direction: column;
+    border: 50px solid black;
+}
+
+#f{
+
+    color: blue;
+}
+
+#u{
+
+    color: red;
+}
+
+#n{
+
+    color: green;
+}
+
+#d{
+
+    color: yellow;
+}
+
+#o{
+
+    color: grey;
+}
+
+#x{
+
+    color: brown;
+}
+
+
