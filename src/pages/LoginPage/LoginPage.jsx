@@ -4,6 +4,9 @@ import './LoginPage.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import fundoo from '../../assets/fundoo.jpg';
+import Userservice from '../../services/userservice';
+
+const axios_service = new Userservice();
 
 export default class LoginPage extends React.Component{
     constructor(props) {
@@ -11,8 +14,8 @@ export default class LoginPage extends React.Component{
         this.state = {
           Email: '',
           Password: '',
-          EError: false,
-          PError: false,
+          EmailError: false,
+          PasswordError: false,
           redirect: null
         }
       }
@@ -25,8 +28,8 @@ export default class LoginPage extends React.Component{
       validation = () =>{
         let isError =false;
         const errors = this.state;
-        errors.EError= this.state.Email === '' ? true : false;
-        errors.PError= this.state.Password === '' ? true : false;
+        errors.EmailError= this.state.Email === '' ? true : false;
+        errors.PasswordError= this.state.Password === '' ? true : false;
         this.setState({
 
           ...errors
@@ -39,9 +42,25 @@ export default class LoginPage extends React.Component{
         var isValidated = this.validation();
         console.log(this.state.Email);
         console.log(this.state.Password);
+
         if(isValidated){
+          let data = {
+            "email": this.state.Email,
+            "service": "advance",
+            "password": this.state.Password
+          };
           alert("validation successful");
-        }
+          axios_service.Login(data).then((result) => {
+              console.log(result);
+              if(result.data.data.success){
+                console.log("***********************success*******************")
+                //this.props.userdata_update(result.data.data)
+                localStorage.setItem('user_details', result.data.data);
+                this.setState({redirect: "/Dashboard"});
+              }
+            })
+          }
+
         if(!isValidated)
         {
           alert("validation unsuccessful");
@@ -90,24 +109,24 @@ export default class LoginPage extends React.Component{
             <div class = "textinput">
             <div class = "space"></div>
             <TextField
-              error = {this.state.EError}
+              error = {this.state.EmailError}
               label = "Enter Email"
               type = "Email"
               name = "Email"
               variant = "outlined"
               onChange = {e => this.change(e)}
-              helperText = {this.state.EError ? "Enter Email Address" : ''}
+              helperText = {this.state.EmailError ? "Enter Email Address" : ''}
               />
               <div class = "space"></div>
               <div class = "space"></div>
               <TextField
-              error = {this.state.PError}
+              error = {this.state.PasswordError}
               label = "Enter Password"
               type = "Password"
               name = "Password"
               variant = "outlined"
               onChange = {e => this.handleChange(e)}
-              helperText = {this.state.PError ? "Enter Password" : ''}
+              helperText = {this.state.PasswordError ? "Enter Password" : ''}
               />
               <div class = "space"></div>
             <a href= "www.react.com">Forgot Password? </a>

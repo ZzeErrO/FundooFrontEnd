@@ -19,11 +19,11 @@ export default class registrationPage extends React.Component{
             Email: '',
             Password: '',
             ConfirmPassword:'',
-            FNError:false,
-            LNError:false,
-            EError: false,
-            PError: false, 
-            CPError:false,
+            FirstNameError:false,
+            LastNameError:false,
+            EmailError: false,
+            PasswordError: false, 
+            ConfirmPasswordError:false,
             redirect: null
           }
       }
@@ -36,11 +36,11 @@ export default class registrationPage extends React.Component{
       validation = () =>{
         let isError =false;
         const errors = this.state;
-        errors.FNError= this.state.FirstName === '' ? true : false;
-        errors.LNError= this.state.LastName === '' ? true : false;
-        errors.EError= this.state.Email === '' ? true : false;
-        errors.PError= this.state.Password === '' ? true : false;
-        errors.CPError= this.state.ConfirmPassword === '' ? true : false;
+        errors.FirstNameError= this.state.FirstName === '' ? true : false;
+        errors.LastNameError= this.state.LastName === '' ? true : false;
+        errors.EmailError= this.state.Email === '' ? true : false;
+        errors.PasswordError= this.state.Password === '' ? true : false;
+        errors.ConfirmPasswordPError= this.state.ConfirmPassword === '' ? true : false;
         this.setState({
 
           ...errors
@@ -137,39 +137,39 @@ export default class registrationPage extends React.Component{
 
               <div class="names">
                 <TextField
-                error = {this.state.FNError}
+                error = {this.state.FirstNameError}
                 label = "First Name"
                 type = "text"
                 name = "First Name"
                 variant = "outlined"
                 size = "small"
                 onChange = {e => this.handleChangeFirstName(e)}
-                helperText = {this.state.FNError ? "First Name" : ''}
+                helperText = {this.state.FirstNameError ? "First Name" : ''}
                 />
 
                 <TextField
-                error = {this.state.LNError}
+                error = {this.state.LastNameError}
                 label = "Last Name"
                 type = "text"
                 name = "Last Name"
                 variant = "outlined"
                 size = "small"
                 onChange = {e => this.handleChangeLastName(e)}
-                helperText = {this.state.LNError ? "Last Name" : ''}
+                helperText = {this.state.LastNameError ? "Last Name" : ''}
                 />
               </div>
 
               <div class = "space"></div>
 
               <TextField
-              error = {this.state.EError}
+              error = {this.state.EmailError}
               label = "Email"
               type = "Email"
               name = "Email"
               variant = "outlined"
               size = "small"
               onChange = {e => this.handleChangeEmail(e)}
-              helperText = {this.state.EError ? "Enter Email Address" : ''}
+              helperText = {this.state.EmailError ? "Enter Email Address" : ''}
               />
 
               You can use letters, numbers & periods
@@ -178,25 +178,25 @@ export default class registrationPage extends React.Component{
 
               <div class= "names">
                 <TextField
-                error = {this.state.PError}
+                error = {this.state.PasswordError}
                 label = "Password"
                 type = "Password"
                 name = "Password"
                 variant = "outlined"
                 size = "small"
                 onChange = {e => this.handleChangePassword(e)}
-                helperText = {this.state.PError ? "Enter Password" : ''}
+                helperText = {this.state.PasswordError ? "Enter Password" : ''}
                 />   
 
                 <TextField
-                error = {this.state.CPError}
+                error = {this.state.ConfirmPasswordError}
                 label = "Confirm"
                 type = "Password"
                 name = "Password"
                 variant = "outlined"
                 size = "small"
                 onChange = {e => this.handleChangeConfirmPassword(e)}
-                helperText = {this.state.CPError ? "Confirm Password" : ''}
+                helperText = {this.state.ConfirmPasswordError ? "Confirm Password" : ''}
                 />            
               </div>
               

@@ -9,6 +9,11 @@ class Userservice {
         console.log(`${baseUrl}user/userSignUp`, data);
         return axiosservice.postMethod(`${baseUrl}user/userSignUp`, data)
     }
+
+    Login = (data) => {
+        console.log(`${baseUrl}user/login`, data);
+        return axiosservice.postMethod(`${baseUrl}user/login`, data)
+    }
 }
 
 export default Userservice
