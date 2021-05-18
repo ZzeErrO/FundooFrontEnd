@@ -28,11 +28,18 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import Input from '@material-ui/core/Input';
 
+import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
+import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
+import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
+import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    background: "white",
   },
   appBar: {
     background: "white",
@@ -132,6 +139,7 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -200,22 +208,37 @@ export default function MiniDrawer() {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {['Notes', 'Reminder', 'Edit label', 'Archive', 'Bin'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          <List>
+              <ListItem button key="Index">
+              <ListItemIcon>{<EmojiObjectsOutlinedIcon />}</ListItemIcon>
+              <ListItemText primary="Index" />
+              </ListItem>
+              <ListItem button key="Reminder">
+              <ListItemIcon>{<NotificationsNoneOutlinedIcon />}</ListItemIcon>
+              <ListItemText primary="Reminder" />
+              </ListItem>
+            <ListItem button key="Edit Label">
+              <ListItemIcon>{<CreateRoundedIcon />}</ListItemIcon>
+              <ListItemText primary="Edit Label" />
             </ListItem>
-          ))}
-        </List>
-        <Divider />
+            <ListItem button key="Archive">
+              <ListItemIcon>{<ArchiveOutlinedIcon />}</ListItemIcon>
+              <ListItemText primary="Archive" />
+            </ListItem>
+            <ListItem button key="Bin">
+              <ListItemIcon>{<DeleteOutlinedIcon />}</ListItemIcon>
+              <ListItemText primary="Bin" />
+            </ListItem>
+          </List>
+        <Divider/>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
 
         <div className = "textfieldinput">
-        <Input placeholder="Take a Note.." inputProps={{ 'aria-label': 'description' }} />        
+            <CreateNote/>
         </div>
+
       </main>
     </div>
   );

@@ -8,6 +8,7 @@ import fundoo2 from '../../assets/fundoo2.jpg';
 import fundoo3 from '../../assets/fundoo3.jpg';
 import Userservice from '../../services/userservice';
 
+
 const axios_service = new Userservice();
 
 export default class registrationPage extends React.Component{
@@ -66,19 +67,22 @@ export default class registrationPage extends React.Component{
             "service": "advance",
             "password": this.state.Password
           };
-          alert("Account Created successful");
+
           axios_service.Registration(data).then((result) => {
               console.log(result);
               if(result.data.data.success){
                 console.log("***********************success*******************")
                 //this.props.userdata_update(result.data.data)
                 localStorage.setItem('user_details', result.data.data);
-                this.setState({redirect: "/Dashboard"});
+                this.setState({redirect: "/login"});
+                
               }
 
           })
         }
       }
+
+
 
       handleChangeFirstName = (e) => {
 

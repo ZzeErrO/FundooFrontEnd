@@ -25,6 +25,13 @@ export default class registrationPage extends React.Component{
         return <div className = "NoteBody">
             <div className = "textfieldinput">
                 <TextField
+                placeholder = "Title"
+                variant = "outlined"
+                size = "small"
+                onClick = {e => this.handleChange(e)}
+                />
+                <TextField
+                placeholder = "Take a note..."
                 variant = "outlined"
                 size = "small"
                 onClick = {e => this.handleChange(e)}

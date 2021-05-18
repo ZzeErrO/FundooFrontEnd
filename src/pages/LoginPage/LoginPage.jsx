@@ -6,7 +6,13 @@ import TextField from '@material-ui/core/TextField';
 import fundoo from '../../assets/fundoo.jpg';
 import Userservice from '../../services/userservice';
 
+import Snackbar from '@material-ui/core/Snackbar';
+
+import { makeStyles } from '@material-ui/core/styles';
+
 const axios_service = new Userservice();
+
+
 
 export default class LoginPage extends React.Component{
     constructor(props) {
@@ -17,6 +23,13 @@ export default class LoginPage extends React.Component{
           EmailError: false,
           PasswordError: false,
           redirect: null
+        }
+      }
+
+
+      handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
         }
       }
 
@@ -49,11 +62,11 @@ export default class LoginPage extends React.Component{
             "service": "advance",
             "password": this.state.Password
           };
-          alert("validation successful");
+          console.log("validation successful");
           axios_service.Login(data).then((result) => {
               console.log(result);
-              console.log(result.data.data.success);
               
+              this.setState({redirect: "/Dashboard"});
             })
           }
 
@@ -83,15 +96,15 @@ export default class LoginPage extends React.Component{
       }
 
 
-        return <div class="content">
-          <div class="header">
+        return <div className="content">
+          <div className="header">
             
           </div>
-        <div class = 'body'>
-          <div class = "left"></div>
+        <div className = 'body'>
+          <div className = "left"></div>
           <div>
-            <div class = "extra">
-            <div class = "fundoo">
+            <div className = "extra">
+            <div className = "fundoo">
             <h3 id = "f">F</h3>
             <h3 id = "u">U</h3>
             <h3 id = "n">N</h3>
@@ -99,11 +112,11 @@ export default class LoginPage extends React.Component{
             <h3 id = "o">O</h3>
             <h3 id = "x">O</h3>
             </div>
-              <div class = "signin">Sign In</div>
-                  <div class = "data">Use Your Fundoo Account</div>
+              <div className = "signin">Sign In</div>
+                  <div className = "data">Use Your Fundoo Account</div>
             
-            <div class = "textinput">
-            <div class = "space"></div>
+            <div className = "textinput">
+            <div className = "space"></div>
             <TextField
               error = {this.state.EmailError}
               label = "Enter Email"
@@ -113,8 +126,8 @@ export default class LoginPage extends React.Component{
               onChange = {e => this.change(e)}
               helperText = {this.state.EmailError ? "Enter Email Address" : ''}
               />
-              <div class = "space"></div>
-              <div class = "space"></div>
+              <div className = "space"></div>
+              <div className = "space"></div>
               <TextField
               error = {this.state.PasswordError}
               label = "Enter Password"
@@ -124,24 +137,24 @@ export default class LoginPage extends React.Component{
               onChange = {e => this.handleChange(e)}
               helperText = {this.state.PasswordError ? "Enter Password" : ''}
               />
-              <div class = "space"></div>
+              <div className = "space"></div>
             <a href= "www.react.com">Forgot Password? </a>
-            <div class = "space"></div>
+            <div className = "space"></div>
             </div>
             <div>
            
             Not your computer? Use a private browsing window to sign <p> in. <a href = "www.google.com">Learn more</a>
             </p>
             </div>
-            <div class = "space"></div>
-            <div class= "inside">
+            <div className = "space"></div>
+            <div className = "inside">
             <a onClick = {this.signuppage}>Create Account</a>
-            <div class = "spacewidth"></div>
+            <div className = "spacewidth"></div>
             <Button variant="contained" color= "primary" onClick = {this.Next}>  Sign In </Button>
             </div>
             </div>
           </div>
-          <div class = "right"></div>
+          <div className = "right"></div>
         </div>
         <footer></footer>
         </div>
