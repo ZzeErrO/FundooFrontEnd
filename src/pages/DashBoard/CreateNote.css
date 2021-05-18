@@ -1,14 +1,36 @@
 .NoteBody{
 
     background-color: white;
-    margin-top: 20px;
+
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    margin-top: 30px;
+
 }
 
 .textfieldinput{
+    border: 2px solid rgb(229, 235, 229);
+    border-radius: 8px;
+}
 
-    margin-top: 30px;
+.text{
+
+    width: 500px;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    height: 20px;
+}
+
+.Icons{
+
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: 20px;
+}
+
+.MuiInputBase-input{
+    height: 10px !important;
 }

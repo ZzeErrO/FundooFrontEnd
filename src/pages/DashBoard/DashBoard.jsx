@@ -120,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   content: {
-    flexGrow: 1,
+
     padding: theme.spacing(3),
   },
 }));
@@ -234,9 +234,7 @@ export default function MiniDrawer() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
 
-        <div className = "textfieldinput">
             <CreateNote/>
-        </div>
 
       </main>
     </div>
