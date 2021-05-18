@@ -68,7 +68,7 @@ export default class LoginPage extends React.Component{
           axios_service.Login(data).then((result) => {
               console.log(result);
               this.setState({open: true});
-              this.setTimeOut(() => this.setState({redirect: "/dashBoard"}), 7000)
+              setTimeout(() => this.setState({redirect: "/dashBoard"}), 4000)
             })
           }
 
