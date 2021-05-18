@@ -7,12 +7,11 @@ import fundoo from '../../assets/fundoo.jpg';
 import Userservice from '../../services/userservice';
 
 import Snackbar from '@material-ui/core/Snackbar';
+import Slide from '@material-ui/core/Slide';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 const axios_service = new Userservice();
-
-
 
 export default class LoginPage extends React.Component{
     constructor(props) {
@@ -22,16 +21,18 @@ export default class LoginPage extends React.Component{
           Password: '',
           EmailError: false,
           PasswordError: false,
-          redirect: null
+          redirect: null,
+          open: false
         }
       }
 
-
-      handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
+      TransitionLeft(props) {
+        return <Slide {...props} direction="left" />;
       }
+      
+      handleClose = () => {
+        this.setState({open: false});
+      };
 
       signuppage = () => {
 
@@ -51,6 +52,7 @@ export default class LoginPage extends React.Component{
       }
 
       Next = () =>{
+        
 
         var isValidated = this.validation();
         console.log(this.state.Email);
@@ -65,8 +67,8 @@ export default class LoginPage extends React.Component{
           console.log("validation successful");
           axios_service.Login(data).then((result) => {
               console.log(result);
-              
-              this.setState({redirect: "/Dashboard"});
+              this.setState({open: true});
+              this.setTimeOut(() => this.setState({redirect: "/dashBoard"}), 7000)
             })
           }
 
@@ -151,6 +153,14 @@ export default class LoginPage extends React.Component{
             <a onClick = {this.signuppage}>Create Account</a>
             <div className = "spacewidth"></div>
             <Button variant="contained" color= "primary" onClick = {this.Next}>  Sign In </Button>
+            <Snackbar
+            open={this.state.open}
+            onClose={this.handleClose}
+            TransitionComponent={this.transition}
+            autoHideDuration={6000}
+            message="Loggeed in successfully.."
+            key={this.transition ? this.transition.name : ''}
+            />
             </div>
             </div>
           </div>

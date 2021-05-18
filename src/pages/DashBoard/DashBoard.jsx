@@ -20,8 +20,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
@@ -71,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "8px",
     position: 'relative',
     width: "750px",
+    padding: "10px"
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -163,19 +162,19 @@ export default function MiniDrawer() {
           </IconButton>
           <Typography variant="h6" noWrap>
           <div class = "fundoo">
-              <h3 id = "f">F</h3>
-              <h3 id = "u">U</h3>
-              <h3 id = "n">N</h3>
-              <h3 id = "d">D</h3>
-              <h3 id = "o">O</h3>
-              <h3 id = "x">O</h3>
+              <h4 id = "f">F</h4>
+              <h4 id = "u">U</h4>
+              <h4 id = "n">N</h4>
+              <h4 id = "d">D</h4>
+              <h4 id = "o">O</h4>
+              <h4 id = "x">O</h4>
               </div>
           </Typography>
 
           <div className={classes.search}>
             
               <SearchIcon class = "searchIcon"/>
-             
+            
             <InputBase
               placeholder="Search"
               classes={{
@@ -201,7 +200,7 @@ export default function MiniDrawer() {
             [classes.drawerClose]: !open,
           }),
         }}
-      >
+       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
