@@ -28,8 +28,8 @@ export default class LoginPage extends React.Component {
   }
 
   componentDidMount() {
+    document.title = `Login`;
     console.log(this.inputref)
-    console.log(this.inputref.current.focus())
     this.inputref.current.focus()
   }
 
@@ -123,7 +123,7 @@ export default class LoginPage extends React.Component {
             <div className="textinput">
               
               <TextField
-                ref={this.inputref}
+                inputRef={this.inputref}
                 error={this.state.EmailError}
                 label="Enter Email"
                 type="Email"

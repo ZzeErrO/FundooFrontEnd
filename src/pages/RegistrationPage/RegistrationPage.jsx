@@ -8,7 +8,6 @@ import fundoo2 from '../../assets/fundoo2.jpg';
 import fundoo3 from '../../assets/fundoo3.jpg';
 import Userservice from '../../services/userservice';
 
-
 const axios_service = new Userservice();
 
 export default class registrationPage extends React.Component{
@@ -27,6 +26,13 @@ export default class registrationPage extends React.Component{
             ConfirmPasswordError:false,
             redirect: null
           }
+          this.inputref = React.createRef()
+      }
+
+      componentDidMount(){
+        document.title = `Registration`;
+        console.log(this.inputref)
+    this.inputref.current.focus()
       }
 
       signinpage = () => {
@@ -140,6 +146,7 @@ export default class registrationPage extends React.Component{
 
               <div className="names2">
                 <TextField
+                inputRef={this.inputref}
                 error = {this.state.FirstNameError}
                 label = "First Name"
                 type = "text"

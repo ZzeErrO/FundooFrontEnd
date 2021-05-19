@@ -34,3 +34,38 @@
 .MuiInputBase-input{
     height: 10px !important;
 }
+
+form{
+
+    display: flex;
+    flex-direction: column;
+}
+
+form{
+    position: relative;
+    width:600px;
+    margin:32px auto 50px auto;
+    background: #fff;
+    padding: 7px;
+    border-radius: 7px;
+    box-shadow: 0 1px 7px rgb(128,128,128);
+    
+}
+form input{
+    width:100%;
+    border:none;
+    padding: 4px 10px;
+    margin-bottom: 20px;
+    outline: none;
+    font-size: 1rem;
+    resize: none;
+}
+form textarea
+{
+    width:100%;
+    border:none;
+    padding: 4px 10px;
+    outline: none;
+    font-size: 1rem;
+    resize: none;
+}

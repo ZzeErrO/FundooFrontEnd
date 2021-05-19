@@ -130,6 +130,10 @@ export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  React.useEffect(() => {
+    document.title = `FUNDOO`;
+  })
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
