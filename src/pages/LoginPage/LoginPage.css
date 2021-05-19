@@ -2,11 +2,9 @@
 
     display: flex;
     flex-direction: column;
-}
-
-.body{
-    display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
 .left{
@@ -30,6 +28,8 @@
     align-items: center;
     padding: 20px;
     border-radius: 10px;
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
 .fundoo{
@@ -83,7 +83,9 @@
 .textinput{
     display: flex;
     flex-direction: column;
-    width: 420px;
+    width: 370px;
+    justify-content: space-around;
+    height: 150px;
 }
 
 .data{
@@ -119,9 +121,6 @@
     width:100px;
 }
 
-.header{
-    height:100px;
-}
 
 a{
     border-radius: 4px;
@@ -138,4 +137,28 @@ a{
     text-align: left;
     border: 0;
     font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
+}
+
+@media screen and (max-width: 650px) {
+    
+.extra{
+    border: 0.5px grey;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.textinput{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 150px;
+}
+
 }

@@ -13,7 +13,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
-
 import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
@@ -51,10 +50,11 @@ export default class registrationPage extends React.Component{
 
       render(){
 
-        let message;
-
-        if (this.state.toOpenNote) {
-            message = <div className = "NoteBody">
+        return (
+          <>
+        {this.state.toOpenNote ? 
+       
+            <div className = "NoteBody">
                         <div className = "textfieldinput">
                             <div>
                             <TextField className = "text"
@@ -95,9 +95,10 @@ export default class registrationPage extends React.Component{
                         </List>
                         </div>
                     </div>
-        } else {
 
-            message = <div className = "NoteBody">
+          :
+
+               <div className = "NoteBody">
                             <div className = "textfieldinput">
                             <TextField className = "text"
                             placeholder = "Take a note.."
@@ -105,12 +106,24 @@ export default class registrationPage extends React.Component{
                             onClick = {e => this.handleChange()}
                             />
                             </div>
+
+                            <form>
+                <input type="text" placeholder ="Title" name="title" />
+                <p> 
+                  <textarea name="content" placeholder ="Take a note ......"/>
+                   
+                    </p>
+            </form>
+
                         </div>
+
+                        
             
         }
+        </>
+        )
 
-        return (message)
-
+        
 
       }
 

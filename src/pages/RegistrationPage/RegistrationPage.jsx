@@ -64,7 +64,6 @@ export default class registrationPage extends React.Component{
             "firstName": this.state.FirstName,
             "lastName": this.state.LastName,
             "email": this.state.Email,
-            "service": "advance",
             "password": this.state.Password
           };
 
@@ -139,7 +138,7 @@ export default class registrationPage extends React.Component{
 
               <div className = "space"></div>
 
-              <div className="names">
+              <div className="names2">
                 <TextField
                 error = {this.state.FirstNameError}
                 label = "First Name"
@@ -180,7 +179,7 @@ export default class registrationPage extends React.Component{
 
               <div className = "space"></div>
 
-              <div className= "names">
+              <div className= "names2">
                 <TextField
                 error = {this.state.PasswordError}
                 label = "Password"
