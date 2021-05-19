@@ -1,5 +1,5 @@
 import React from  'react';
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import CreateNote from './CreateNote.jsx';
@@ -125,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MiniDrawer() {
+function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -244,3 +244,6 @@ export default function MiniDrawer() {
     </div>
   );
 }
+
+
+export default withRouter(MiniDrawer);

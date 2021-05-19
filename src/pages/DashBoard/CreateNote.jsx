@@ -82,10 +82,6 @@ export default class registrationPage extends React.Component {
                 </ListItem>
               </List>
 
-
-
-
-
             </form>
 
           </div>

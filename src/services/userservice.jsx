@@ -1,18 +1,18 @@
 import Axios from './axiosservice'
 
 const axiosservice = new Axios();
-const baseUrl = 'https://localhost:44362/api/'
+const baseUrl = 'http://fundoonotes.incubation.bridgelabz.com/api/'
 
 class Userservice {
 
     Registration = (data) => {
-        console.log(`${baseUrl}User/Register`, data);
-        return axiosservice.postMethod(`${baseUrl}User/Register`, data)
+        console.log(`${baseUrl}user/userSignUp`, data);
+        return axiosservice.postMethod(`${baseUrl}user/userSignUp`, data)
     }
 
     Login = (data) => {
-        console.log(`${baseUrl}User/Login`, data);
-        return axiosservice.postMethod(`${baseUrl}User/Login`, data)
+        console.log(`${baseUrl}user/login`, data);
+        return axiosservice.postMethod(`${baseUrl}user/login`, data)
     }
 }
 
