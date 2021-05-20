@@ -18,6 +18,7 @@ import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 
+
 const axios_service = new Userservice();
 
 export default class registrationPage extends React.Component {
@@ -55,6 +56,7 @@ export default class registrationPage extends React.Component {
         {this.state.toOpenNote ?
 
           <div className="NoteBody">
+            
             <form>
               <input type="text" placeholder="Title" name="title"  onChange = {e => this.handleChangeTitle(e)}/>
 
@@ -83,6 +85,8 @@ export default class registrationPage extends React.Component {
               </List>
 
             </form>
+
+            
 
           </div>
 

@@ -65,16 +65,15 @@ export default class LoginPage extends React.Component {
     console.log(this.state.Password);
 
     if (isValidated) {
+      this.setState({ open: true });
       let data = {
         "email": this.state.Email,
-        "service": "advance",
         "password": this.state.Password
       };
 
       console.log("validation successful");
       axios_service.Login(data).then((result) => {
         console.log(result);
-        this.setState({ open: true });
         setTimeout(() => this.setState({ redirect: "/dashBoard" }), 4000)
 
       }).catch(() => {

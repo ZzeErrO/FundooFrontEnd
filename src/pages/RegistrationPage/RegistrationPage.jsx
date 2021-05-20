@@ -8,6 +8,10 @@ import fundoo2 from '../../assets/fundoo2.jpg';
 import fundoo3 from '../../assets/fundoo3.jpg';
 import Userservice from '../../services/userservice';
 
+
+import Snackbar from '@material-ui/core/Snackbar';
+import Slide from '@material-ui/core/Slide';
+
 const axios_service = new Userservice();
 
 export default class registrationPage extends React.Component{
@@ -24,7 +28,8 @@ export default class registrationPage extends React.Component{
             EmailError: false,
             PasswordError: false, 
             ConfirmPasswordError:false,
-            redirect: null
+            redirect: null,
+            open: false
           }
           this.inputref = React.createRef()
       }
@@ -34,6 +39,15 @@ export default class registrationPage extends React.Component{
         console.log(this.inputref)
     this.inputref.current.focus()
       }
+
+      TransitionLeft(props) {
+        return <Slide {...props} direction="left" />;
+      }
+
+      handleClose = () => {
+        this.setState({ open: false });
+      };
+    
 
       signinpage = () => {
 
@@ -75,19 +89,16 @@ export default class registrationPage extends React.Component{
 
           axios_service.Registration(data).then((result) => {
               console.log(result);
-              if(result.data.data.success){
-                console.log("***********************success*******************")
+              if(result.data.success)
+              {  console.log("***********************success*******************")
                 //this.props.userdata_update(result.data.data)
-                localStorage.setItem('user_details', result.data.data);
-                this.setState({redirect: "/login"});
-                
+                /*localStorage.setItem('user_details', result.data.data);
+                this.setState({ open: true });*/
+                setTimeout(() => this.setState({ redirect: "/login" }), 4000)
               }
-
           })
         }
       }
-
-
 
       handleChangeFirstName = (e) => {
 
@@ -219,6 +230,15 @@ export default class registrationPage extends React.Component{
                 <a onClick = {this.signinpage}> Sign In Instead </a>
                 <div className = "spacewidth3"></div>
                 <Button variant="contained" color="primary" onClick = {this.Next}>  Next </Button>
+
+                <Snackbar
+                open={this.state.open}
+                onClose={this.handleClose}
+                TransitionComponent={this.transition}
+                autoHideDuration={6000}
+                message="Loggeed in successfully.."
+                key={this.transition ? this.transition.name : ''}
+                />
 
               </div>
 

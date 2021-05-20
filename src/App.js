@@ -5,15 +5,13 @@ import Registration_Page from "./pages/RegistrationPage/RegistrationPage.jsx";
 import DashBoard from "./pages/DashBoard/DashBoard.jsx";
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
-import ProtectedRoute from "./pages/protectedroute.jsx";
-
 function App() {
   return (
       <BrowserRouter>
         <Switch>
           <Route exact path= "/login" component={LoginPage} />
           <Route exact path= "/registration" component={Registration_Page} />
-          <ProtectedRoute exact path= "/dashBoard" component={DashBoard} />
+          <Route exact path= "/dashBoard" component={DashBoard} />
           <Route path="*" component={() => "404 NOT FOUND"} />
         </Switch>
       </BrowserRouter>
