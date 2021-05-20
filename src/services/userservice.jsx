@@ -14,6 +14,17 @@ class Userservice {
         console.log(`${baseUrl}User/Login`, data);
         return axiosservice.postMethod(`${baseUrl}User/Login`, data)
     }
+
+    AddNote = (data) => {
+        console.log(`${baseUrl}Notes`, data);
+        return axiosservice.postMethod2(`${baseUrl}Notes`, data)
+    }
+
+    DisplayNote = (token) => {
+        console.log(`${baseUrl}Notes`, token);
+        return axiosservice.getMethod(`${baseUrl}Notes`, token)
+    }
+
 }
 
 export default Userservice

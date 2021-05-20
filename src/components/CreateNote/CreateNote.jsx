@@ -17,6 +17,7 @@ import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneO
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
+import FiberPinOutlinedIcon from '@material-ui/icons/FiberPinOutlined';
 
 
 const axios_service = new Userservice();
@@ -27,16 +28,71 @@ export default class registrationPage extends React.Component {
     this.state = {
       Title: '',
       Note: '',
+      Reminder: '',
+      Color: '',
+      Iimage: '',
+      Collaborator: '',
+      IsPin: false,
+      IsArchive: false,
+      IsTrash: false,
       toOpenNote: false,
+      TitleError: false,
+      NoteError: false
     }
   }
+
+  
+  validation = () => {
+    let isError = false;
+    const errors = this.state;
+    errors.TitleError = this.state.Title === '' ? true : false;
+    errors.NoteError = this.state.Note === '' ? true : false;
+    this.setState({
+
+      ...errors
+    })
+    return isError = (errors.Title !== '' && errors.Note !== '') ? true : false
+  }
+
 
   handleChange = () => {
     this.setState({ toOpenNote: true });
   }
 
   handleChange2 = () => {
-    this.setState({ toOpenNote: false });
+
+    var isValidated = this.validation();
+    console.log(this.state.Title);
+    console.log(this.state.Note);
+
+    if (isValidated) {
+      this.setState({ toOpenNote: false });
+      let data = {
+        "tile": this.state.Title,
+        "message": this.state.Note,
+        "reminder": null,
+        "color": null,
+        "image": null,
+        "collaborator": null,
+        "isPin": this.state.isPin,
+        "isArchive": this.state.isArchive,
+        "isTrash": this.state.isTrash
+      };
+
+      console.log("validation successful");
+      axios_service.AddNote(data).then((result) => {
+        console.log(result);
+
+      }).catch(() => {
+        
+      })
+
+    }
+
+    if(!isValidated){
+      this.setState({ toOpenNote: false });
+    }
+
   }
 
   handleChangeTitle = (e) => {
@@ -49,6 +105,7 @@ export default class registrationPage extends React.Component {
     this.setState({ Note: e.target.value })
   }
 
+
   render() {
 
     return (
@@ -58,8 +115,18 @@ export default class registrationPage extends React.Component {
           <div className="NoteBody">
             
             <form>
+              <div className = "titlepin">
               <input type="text" placeholder="Title" name="title"  onChange = {e => this.handleChangeTitle(e)}/>
+              
 
+              <ListItem button key="Pin">
+
+                  <ListItemIcon>{<FiberPinOutlinedIcon />}</ListItemIcon>
+
+              </ListItem>
+
+
+              </div>
               <textarea name="content" placeholder="Take a note ......" onChange = {e => this.handleChangeNote(e)}/>
 
               <List className="Icons">

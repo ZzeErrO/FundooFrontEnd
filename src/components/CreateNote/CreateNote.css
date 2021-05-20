@@ -31,6 +31,12 @@
     height: 20px;
 }
 
+.titlepin{
+
+    display:flex;
+    
+}
+
 .MuiInputBase-input{
     height: 10px !important;
 }
