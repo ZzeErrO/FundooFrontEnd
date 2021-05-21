@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import fundoo from '../../assets/fundoo.jpg';
 import Userservice from '../../services/userservice';
+import GetMethod from '../../components/DisplayNote/DisplayNote.jsx';
 
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
