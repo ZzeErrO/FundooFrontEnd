@@ -74,6 +74,8 @@ export default class LoginPage extends React.Component {
       console.log("validation successful");
       axios_service.Login(data).then((result) => {
         console.log(result);
+        this.setState({ open: true });
+        localStorage.setItem('id',result.data.token);
         setTimeout(() => this.setState({ redirect: "/dashBoard" }), 4000)
 
       }).catch(() => {

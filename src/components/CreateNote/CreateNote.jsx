@@ -28,9 +28,9 @@ export default class registrationPage extends React.Component {
     this.state = {
       Title: '',
       Note: '',
-      Reminder: '',
+      Reminder: new Date(),
       Color: '',
-      Iimage: '',
+      Image: '',
       Collaborator: '',
       IsPin: false,
       IsArchive: false,
@@ -41,7 +41,6 @@ export default class registrationPage extends React.Component {
     }
   }
 
-  
   validation = () => {
     let isError = false;
     const errors = this.state;
@@ -53,7 +52,6 @@ export default class registrationPage extends React.Component {
     })
     return isError = (errors.Title !== '' && errors.Note !== '') ? true : false
   }
-
 
   handleChange = () => {
     this.setState({ toOpenNote: true });
@@ -68,23 +66,23 @@ export default class registrationPage extends React.Component {
     if (isValidated) {
       this.setState({ toOpenNote: false });
       let data = {
-        "tile": this.state.Title,
+        "title": this.state.Title,
         "message": this.state.Note,
-        "reminder": null,
+        "reminder": this.state.Reminder,
         "color": null,
         "image": null,
         "collaborator": null,
-        "isPin": this.state.isPin,
-        "isArchive": this.state.isArchive,
-        "isTrash": this.state.isTrash
+        "isPin": false,
+        "isArchive": false,
+        "isTrash": false
       };
 
       console.log("validation successful");
       axios_service.AddNote(data).then((result) => {
         console.log(result);
 
-      }).catch(() => {
-        
+      }).catch((err) => {
+        console.log(err);
       })
 
     }
@@ -105,6 +103,25 @@ export default class registrationPage extends React.Component {
     this.setState({ Note: e.target.value })
   }
 
+  handleChangeReminder = () => {
+
+  }
+
+  handleChangeCollaborator = (e) => {
+    console.log(e.target.value);
+    this.setState({ Note: e.target.value })
+  }
+
+  handleChangeArchive = () => {
+
+    if (this.state.IsArchive) {
+      this.setState({ isArchive: false })
+    }
+    else{
+      this.setState({ isArchive: true })
+    }
+  }
+
 
   render() {
 
@@ -119,7 +136,7 @@ export default class registrationPage extends React.Component {
               <input type="text" placeholder="Title" name="title"  onChange = {e => this.handleChangeTitle(e)}/>
               
 
-              <ListItem button key="Pin">
+              <ListItem button onChange={e => this.handleChangePin()} key="Pin">
 
                   <ListItemIcon>{<FiberPinOutlinedIcon />}</ListItemIcon>
 
@@ -130,25 +147,27 @@ export default class registrationPage extends React.Component {
               <textarea name="content" placeholder="Take a note ......" onChange = {e => this.handleChangeNote(e)}/>
 
               <List className="Icons">
-                <ListItem button key="Index">
+
+                <ListItem button onChange={e => this.handleChangeReminder(e)} key="Index">
                   <ListItemIcon>{<NotificationsNoneOutlinedIcon />}</ListItemIcon>
-
                 </ListItem>
-                <ListItem button key="Reminder">
+
+                <ListItem button onChange={e => this.handleChangeCollaborator(e)} key="Reminder">
                   <ListItemIcon>{<PersonAddOutlinedIcon />}</ListItemIcon>
-
                 </ListItem>
-                <ListItem button key="Edit Label">
+
+                <ListItem button onChange={e => this.handleChangeImage(e)} key="Edit Label">
                   <ListItemIcon>{<ImageOutlinedIcon />}</ListItemIcon>
-
                 </ListItem>
-                <ListItem button key="Archive">
+
+                <ListItem button onClick={e => this.handleChangeArchive()} key="Archive">
                   <ListItemIcon>{<ArchiveOutlinedIcon />}</ListItemIcon>
-
                 </ListItem>
+
                 <ListItem button onClick={e => this.handleChange2()}>
                   Close
                 </ListItem>
+
               </List>
 
             </form>

@@ -2,11 +2,7 @@ import axios from 'axios'
 
 class Axios {
 
-    postMethod = (url, data, isHeaderRequired = false) =>{
-        return axios.post(url, data, isHeaderRequired)
-    }
-
-    postMethod2 = (url, data, isHeaderRequired) =>{
+    postMethod = (url, data, isHeaderRequired) =>{
         return axios.post(url, data, isHeaderRequired)
     }
 

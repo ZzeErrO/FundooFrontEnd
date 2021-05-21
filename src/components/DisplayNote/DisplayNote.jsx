@@ -30,6 +30,7 @@ export default class DisplayNote extends Component {
 
         axios_service.DisplayNote().then((result) => {
             console.log(result);
+
         }).catch(() => {
             console.log();
         })
@@ -43,7 +44,7 @@ export default class DisplayNote extends Component {
                 this.state.Title !== ''
                 ?
                 <div className="Paper">
-                <Paper elevation={0} />
+                <Paper elevation={0} ></Paper>
                 </div>
                 :
 
