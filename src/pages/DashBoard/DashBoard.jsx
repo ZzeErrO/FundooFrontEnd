@@ -133,7 +133,10 @@ function MiniDrawer() {
 
   React.useEffect(() => {
     document.title = `FUNDOO`;
+
   })
+
+  
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -239,8 +242,8 @@ function MiniDrawer() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
 
-            <CreateNote/>
-            <DisplayNote/>
+            <CreateNote />
+            <DisplayNote />
       </main>
     </div>
   );

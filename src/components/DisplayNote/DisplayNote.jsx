@@ -18,91 +18,52 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     height: 200,
-    width: 150,
+    width: 250,
   },
   control: {
     padding: theme.spacing(2),
   },
 }));
 
-
 export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);
 
-  const [Title, setTitle] = React.useState("sfbqrggerrbebebefbere");
-  const [Message, setMessage] = React.useState();
-  const [Reminder, setReminder] = React.useState();
-  const [Color, setColor] = React.useState();
-  const [Image, setImage] = React.useState();
-  const [Collaborator, setCollaborator] = React.useState();
-  const [IsPin, setIsPin] = React.useState(false);
-  const [IsArchive, setIsArchive] = React.useState(false);
-  const [IsTrash, setIsTrash] = React.useState(false);
+  const [notes, setNote] = React.useState([]);
 
   const classes = useStyles();
 
-  const handleState = () => {
-    
+  React.useEffect(() => {
     axios_service.DisplayNote().then((result) => {
-        console.log(result);
-        for (let index = 0; index < result.data.length; index++) {
-
-            mymap.set(index, JSON.parse('result.data[index]'));
-            array2.push(index);
-        }
-    
-    for (let [key,value] of mymap) {
-        array[key] = value;
-
-    }
-    
-    console.log(array[0].title);
-
+      console.log(result.data);
+      setNote(result.data);
     }).catch((err) => {
-        console.log(err);
+      console.log(err);
     })
+  }, [])
 
-    setTitle("aisefbihb");
-    /*setMessage(array[0].message);
-    setReminder(array[0].reminder);
-    setColor(array[0].color);
-    setImage(array[0].image);
-    setCollaborator(array[0].collaborator);
-    setIsPin(array[0].isPin);
-    setIsArchive(array[0].isArchive);
-    setIsTrash(array[0].isTrash);*/
-   
-  };
 
   return (
-      <div>
-      
-        <Grid item xs={12}>
-        <Grid container justify="center" spacing={spacing}>
-          {[0,1,2].map((value) => (
+    <div>
+
+      <Grid item xs={12}>
+        <Grid container justify="start" spacing={spacing}>
+          {notes.slice(0).reverse().map((value) =>
 
             <Grid key={value} item>
 
-                <Paper className={classes.paper}>
+              <Paper className={classes.paper}>
 
-                {Title}
-                {Message}
-                {Reminder}
-                {Color}
-                {Image}
-                {Collaborator}
-                {IsPin}
-                {IsArchive}
-                {IsTrash}
+                <div className = "title"> <h3>{value.title}</h3></div>
+                <div className = "message">{value.message}</div>
+              
+              </Paper>
 
-                </Paper>
-                
             </Grid>
 
-          ))}
+          )}
         </Grid>
-    </Grid>
-        <button onClick = {handleState}> Click me </button>
+      </Grid>
+     
     </div>
   );
 }

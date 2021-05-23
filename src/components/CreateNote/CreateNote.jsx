@@ -132,6 +132,7 @@ export default class registrationPage extends React.Component {
           <div className="NoteBody">
             
             <form>
+              
               <div className = "titlepin">
               <input type="text" placeholder="Title" name="title"  onChange = {e => this.handleChangeTitle(e)}/>
               
