@@ -33,6 +33,9 @@ import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 
+
+import Userservice from '../../services/userservice';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -126,18 +129,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+const axios_service = new Userservice();
+
 function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  React.useEffect(() => {
-    document.title = `FUNDOO`;
+  const [notes, setNote] = React.useState([]);
 
-  })
+  React.useEffect(() => {
+    axios_service.DisplayNote().then((result) => {
+      console.log(result.data);
+      setNote(result.data);
+      document.title = `FUNDOO`;
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [])
 
   
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -242,8 +254,8 @@ function MiniDrawer() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
 
-            <CreateNote />
-            <DisplayNote />
+            <CreateNote getnote = {notes}/>
+            <DisplayNote getnotes = {notes}/>
       </main>
     </div>
   );

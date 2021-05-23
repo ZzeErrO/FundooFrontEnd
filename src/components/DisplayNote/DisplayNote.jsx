@@ -25,29 +25,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SpacingGrid() {
+export default function SpacingGrid(props) {
   const [spacing, setSpacing] = React.useState(2);
 
-  const [notes, setNote] = React.useState([]);
-
   const classes = useStyles();
-
-  React.useEffect(() => {
-    axios_service.DisplayNote().then((result) => {
-      console.log(result.data);
-      setNote(result.data);
-    }).catch((err) => {
-      console.log(err);
-    })
-  }, [])
-
 
   return (
     <div>
 
       <Grid item xs={12}>
         <Grid container justify="start" spacing={spacing}>
-          {notes.slice(0).reverse().map((value) =>
+          {props.getnotes.slice(0).reverse().map((value) =>
 
             <Grid key={value} item>
 

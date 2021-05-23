@@ -41,6 +41,10 @@ export default class registrationPage extends React.Component {
     }
   }
 
+  componentDidUpdate(){
+
+  }
+
   validation = () => {
     let isError = false;
     const errors = this.state;
