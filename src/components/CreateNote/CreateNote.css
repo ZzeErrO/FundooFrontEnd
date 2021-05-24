@@ -11,6 +11,15 @@
 
 }
 
+
+.IconsCreate{
+
+    display: flex;
+    flex-direction: row !important;
+    
+}
+
+
 .textfieldinput{
     border: 2px solid rgb(229, 235, 229);
     border-radius: 8px;
@@ -22,12 +31,6 @@
     font-family: Roboto,Arial,sans-serif;
     font-size: .875rem;
     font-weight: 400;
-    height: 20px;
-}
-
-.Icons{
-
-    display: flex;
     height: 20px;
 }
 

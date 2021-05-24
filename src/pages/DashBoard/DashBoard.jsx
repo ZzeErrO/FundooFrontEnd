@@ -170,7 +170,7 @@ function MiniDrawer() {
       >
         <Toolbar>
           <IconButton
-            color="black"
+            color="primary"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -181,7 +181,7 @@ function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-          <div class = "fundoo">
+          <div className = "fundoo">
               <h4 id = "f">F</h4>
               <h4 id = "u">U</h4>
               <h4 id = "n">N</h4>
@@ -261,5 +261,5 @@ function MiniDrawer() {
   );
 }
 
-
+ 
 export default withRouter(MiniDrawer);

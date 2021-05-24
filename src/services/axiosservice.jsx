@@ -10,6 +10,14 @@ class Axios {
         return axios.get(url, data, isHeaderRequired)
     }
 
+    putMethod = (url, data, isHeaderRequired) => {
+        return axios.put(url, data, isHeaderRequired)
+    }
+
+    deleteMethod = (url, data, isHeaderRequired) => {
+        return axios.delete(url, data, isHeaderRequired)
+    }
+
 }
 
 export default Axios

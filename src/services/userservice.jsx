@@ -32,6 +32,16 @@ class Userservice {
         return axiosservice.getMethod(`${baseUrl}Notes`, confignote)
     }
 
+    MakeArchive = (data) => {
+        console.log(`${baseUrl}Notes`, confignote);
+        return axiosservice.putMethod(`${baseUrl}Notes`, data, confignote)
+    }
+
+    MakeTrash = (data) => {
+        console.log(`${baseUrl}Notes`, confignote);
+        return axiosservice.deleteMethod(`${baseUrl}Notes`, data, confignote)
+    }
+
 }
 
 export default Userservice

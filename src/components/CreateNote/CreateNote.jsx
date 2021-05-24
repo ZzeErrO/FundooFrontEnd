@@ -5,8 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import fundoo4 from '../../assets/fundoo4.svg';
 import fundoo2 from '../../assets/fundoo2.jpg';
 import fundoo3 from '../../assets/fundoo3.jpg';
-import Userservice from '../../services/userservice';
+
 import './CreateNote.css';
+import IconsCreateNote from '../Icons/IconsCreateNote.jsx';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -19,7 +20,7 @@ import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import FiberPinOutlinedIcon from '@material-ui/icons/FiberPinOutlined';
 
-
+import Userservice from '../../services/userservice';
 const axios_service = new Userservice();
 
 export default class registrationPage extends React.Component {
@@ -28,73 +29,12 @@ export default class registrationPage extends React.Component {
     this.state = {
       Title: '',
       Note: '',
-      Reminder: new Date(),
-      Color: '',
-      Image: '',
-      Collaborator: '',
-      IsPin: false,
-      IsArchive: false,
-      IsTrash: false,
-      toOpenNote: false,
-      TitleError: false,
-      NoteError: false
+      toOpenNote: false
     }
-  }
-
-  componentDidUpdate(){
-
-  }
-
-  validation = () => {
-    let isError = false;
-    const errors = this.state;
-    errors.TitleError = this.state.Title === '' ? true : false;
-    errors.NoteError = this.state.Note === '' ? true : false;
-    this.setState({
-
-      ...errors
-    })
-    return isError = (errors.Title !== '' && errors.Note !== '') ? true : false
   }
 
   handleChange = () => {
     this.setState({ toOpenNote: true });
-  }
-
-  handleChange2 = () => {
-
-    var isValidated = this.validation();
-    console.log(this.state.Title);
-    console.log(this.state.Note);
-
-    if (isValidated) {
-      this.setState({ toOpenNote: false });
-      let data = {
-        "title": this.state.Title,
-        "message": this.state.Note,
-        "reminder": this.state.Reminder,
-        "color": null,
-        "image": null,
-        "collaborator": null,
-        "isPin": false,
-        "isArchive": false,
-        "isTrash": false
-      };
-
-      console.log("validation successful");
-      axios_service.AddNote(data).then((result) => {
-        console.log(result);
-
-      }).catch((err) => {
-        console.log(err);
-      })
-
-    }
-
-    if(!isValidated){
-      this.setState({ toOpenNote: false });
-    }
-
   }
 
   handleChangeTitle = (e) => {
@@ -107,25 +47,9 @@ export default class registrationPage extends React.Component {
     this.setState({ Note: e.target.value })
   }
 
-  handleChangeReminder = () => {
-
+  handleChangeClose = () => {
+    this.setState({ toOpenNote: false });
   }
-
-  handleChangeCollaborator = (e) => {
-    console.log(e.target.value);
-    this.setState({ Note: e.target.value })
-  }
-
-  handleChangeArchive = () => {
-
-    if (this.state.IsArchive) {
-      this.setState({ isArchive: false })
-    }
-    else{
-      this.setState({ isArchive: true })
-    }
-  }
-
 
   render() {
 
@@ -147,31 +71,13 @@ export default class registrationPage extends React.Component {
 
               </ListItem>
 
-
               </div>
+              
               <textarea name="content" placeholder="Take a note ......" onChange = {e => this.handleChangeNote(e)}/>
 
-              <List className="Icons">
+              <List className="IconsCreate">
 
-                <ListItem button onChange={e => this.handleChangeReminder(e)} key="Index">
-                  <ListItemIcon>{<NotificationsNoneOutlinedIcon />}</ListItemIcon>
-                </ListItem>
-
-                <ListItem button onChange={e => this.handleChangeCollaborator(e)} key="Reminder">
-                  <ListItemIcon>{<PersonAddOutlinedIcon />}</ListItemIcon>
-                </ListItem>
-
-                <ListItem button onChange={e => this.handleChangeImage(e)} key="Edit Label">
-                  <ListItemIcon>{<ImageOutlinedIcon />}</ListItemIcon>
-                </ListItem>
-
-                <ListItem button onClick={e => this.handleChangeArchive()} key="Archive">
-                  <ListItemIcon>{<ArchiveOutlinedIcon />}</ListItemIcon>
-                </ListItem>
-
-                <ListItem button onClick={e => this.handleChange2()}>
-                  Close
-                </ListItem>
+              <IconsCreateNote title = {this.state.Title} message = {this.state.Note} pin ={this.state.IsPin} isOpen = {this.handleChangeClose} />
 
               </List>
 
@@ -189,8 +95,6 @@ export default class registrationPage extends React.Component {
             </form>
 
           </div>
-
-
 
         }
       </>
