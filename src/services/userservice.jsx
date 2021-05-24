@@ -33,13 +33,13 @@ class Userservice {
     }
 
     MakeArchive = (data) => {
-        console.log(`${baseUrl}Notes`, confignote);
-        return axiosservice.putMethod(`${baseUrl}Notes`, data, confignote)
+        console.log(`${baseUrl}Notes/${data.noteId}/Archive`, confignote);
+        return axiosservice.putMethod(`${baseUrl}Notes/${data.noteId}/Archive`, data, confignote)
     }
 
     MakeTrash = (data) => {
-        console.log(`${baseUrl}Notes`, confignote);
-        return axiosservice.deleteMethod(`${baseUrl}Notes`, data, confignote)
+        console.log(`${baseUrl}Notes/${data.noteId}/Trash`, confignote);
+        return axiosservice.deleteMethod(`${baseUrl}Notes/${data.noteId}/Trash`, data, confignote)
     }
 
 }

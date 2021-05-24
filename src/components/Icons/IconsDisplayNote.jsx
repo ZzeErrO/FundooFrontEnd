@@ -36,9 +36,9 @@ export default class IconsDisplayNote extends Component {
 
   handleChangeArchive = () => {
 
-      this.setState({ isArchive: true })
+      this.setState({ IsArchive: true })
       let data = {
-        "noteId": this.props.value.noteId,
+        "noteId": this.props.oneNote.noteId,
       }
       axios_service.MakeArchive(data).then((result) => {
         console.log(result);
@@ -51,10 +51,10 @@ export default class IconsDisplayNote extends Component {
   }
 
   handleChangeTrash = () => {
-
-      this.setState({ isTrash: true })
+      console.log(this.state.IsTrash)
+      this.setState({ IsTrash: true })
       let data = {
-        "noteId": this.props.value.noteId,
+        "noteId": this.props.oneNote.noteId
       }
       axios_service.MakeTrash(data).then((result) => {
         console.log(result);
@@ -94,13 +94,13 @@ export default class IconsDisplayNote extends Component {
                 </div>
 
                 <div className= "Items">
-                <ListItem button onClick={e => this.handleChangeArchive()} key="Archive">
+                <ListItem button onClick={this.handleChangeArchive} key="Archive">
                   <ListItemIcon>{<ArchiveOutlinedIcon />}</ListItemIcon>
                 </ListItem>
                 </div>
 
                 <div className= "Items">
-                <ListItem button onClick={e => this.handleChangeTrash()} key="Bin">
+                <ListItem button onClick={this.handleChangeTrash} key="Bin">
                 <ListItemIcon>{<DeleteOutlinedIcon />}</ListItemIcon>
                 </ListItem>
                 </div>

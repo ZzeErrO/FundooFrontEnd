@@ -37,7 +37,7 @@ export default function SpacingGrid(props) {
 
       <Grid item xs={12}>
         <Grid container justify="flex-start" spacing={spacing}>
-          {props.getnotes.slice(0).reverse().map((value, index) =>
+          {props.getnotes.slice(0).reverse().map((value) =>
 
             <Grid key={value.noteId} item>
 
