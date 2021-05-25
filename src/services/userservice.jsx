@@ -39,7 +39,7 @@ class Userservice {
 
     MakeTrash = (data) => {
         console.log(`${baseUrl}Notes/${data.noteId}/Trash`, confignote);
-        return axiosservice.deleteMethod(`${baseUrl}Notes/${data.noteId}/Trash`, data, confignote)
+        return axiosservice.deleteMethod(`${baseUrl}Notes/${data.noteId}/Trash`, confignote)
     }
 
 }

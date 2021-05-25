@@ -58,3 +58,21 @@
 
     color: brown;
 }
+
+
+@media screen and (max-width: 450px) {
+
+.search {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    border: 1px solid transparent;
+    background-color: #f1f3f4;
+    height: 50px;
+    margin-left: 100px;
+    border-radius: 8px;
+    position: relative;
+    width: 750px;
+    padding: 10px
+}
+}

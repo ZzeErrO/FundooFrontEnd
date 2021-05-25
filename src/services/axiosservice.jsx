@@ -14,8 +14,8 @@ class Axios {
         return axios.put(url, data, isHeaderRequired)
     }
 
-    deleteMethod = (url, data, isHeaderRequired) => {
-        return axios.delete(url, data, isHeaderRequired)
+    deleteMethod = (url, isHeaderRequired) => {
+        return axios.delete(url, isHeaderRequired)
     }
 
 }

@@ -66,10 +66,11 @@ export default class IconsDisplayNote extends Component {
     
   }
 
-
     
     render() {
         return (
+          
+
 
             <div>
                 

@@ -140,6 +140,10 @@ function MiniDrawer() {
   const [notes, setNote] = React.useState([]);
 
   React.useEffect(() => {
+    GetNotes();
+  }, [])
+
+  const GetNotes = () => {
     axios_service.DisplayNote().then((result) => {
       console.log(result.data);
       setNote(result.data);
@@ -147,9 +151,8 @@ function MiniDrawer() {
     }).catch((err) => {
       console.log(err);
     })
-  }, [])
+  }
 
-  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -253,8 +256,7 @@ function MiniDrawer() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-
-            <CreateNote getnote = {notes}/>
+            <CreateNote getNoteMethod={GetNotes}/>
             <DisplayNote getnotes = {notes}/>
       </main>
     </div>

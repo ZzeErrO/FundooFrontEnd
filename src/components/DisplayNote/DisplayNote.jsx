@@ -29,8 +29,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SpacingGrid(props) {
   const [spacing, setSpacing] = React.useState(2);
+  const [AreIconsOpen, setAreIconsOpen] = React.useState(false);
 
   const classes = useStyles();
+
+  const changeBackground = (x) => {
+    setAreIconsOpen(true);
+   
+};
+
+  const changeBackground2 = (x) => {
+    setAreIconsOpen(false);
+   
+};
 
   return (
     <div>
@@ -40,15 +51,29 @@ export default function SpacingGrid(props) {
           {props.getnotes.slice(0).reverse().map((value) =>
 
             <Grid key={value.noteId} item>
-
-              <Paper className={classes.paper}>
+              { AreIconsOpen ?
+              
+              <Paper className={classes.paper} className = "paper"
+              onMouseLeave={changeBackground2}>
 
                 <div className = "title"> <h3>{value.title}</h3></div>
                 <div className = "message">{value.message}</div>
-                <div> {value.isArchive.toString()} </div>
+
                 <IconsDisplayNote oneNote = {value}/>
+
               </Paper>
 
+              :
+
+              <Paper className={classes.paper}
+              onMouseEnter={changeBackground}>
+
+                <div className = "title"> <h3>{value.title}</h3></div>
+                <div className = "message">{value.message}</div>
+              
+              </Paper>  
+
+              }
             </Grid>
 
           )}

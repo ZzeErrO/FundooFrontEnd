@@ -105,7 +105,7 @@ export default class Icons extends Component {
 
     if(!isValidated){
       this.props.isOpen();
-        console.log(this.props);
+      console.log(this.props);
       this.setState({ toOpenNote: false });
     }
 
