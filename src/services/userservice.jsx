@@ -42,6 +42,11 @@ class Userservice {
         return axiosservice.deleteMethod(`${baseUrl}Notes/${data.noteId}/Trash`, confignote)
     }
 
+    Update = (data) => {
+        console.log(`${baseUrl}Notes/${data.noteId}`, data, confignote);
+        return axiosservice.putMethod(`${baseUrl}Notes/${data.noteId}`, data, confignote)
+    }
+
 }
 
 export default Userservice

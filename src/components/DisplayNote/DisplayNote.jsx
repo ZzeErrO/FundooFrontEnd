@@ -8,6 +8,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 const axios_service = new Userservice();
 
@@ -30,18 +38,55 @@ const useStyles = makeStyles((theme) => ({
 export default function SpacingGrid(props) {
   const [spacing, setSpacing] = React.useState(2);
   const [AreIconsOpen, setAreIconsOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [title, setTitle] = React.useState();
+  const [message, setMessage] = React.useState();
 
   const classes = useStyles();
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const changeBackground = (x) => {
     setAreIconsOpen(true);
-   
-};
+
+  };
 
   const changeBackground2 = (x) => {
     setAreIconsOpen(false);
-   
-};
+
+  };
+
+  const handleChangeTitle = (e) => {
+    console.log(e.target.value);
+    setTitle( e.target.title )
+  }
+
+  const handleChangeNote = (e) => {
+    console.log(e.target.value);
+    this.setState( e.target.message )
+  }
+
+  const Update = (e) => {
+    setOpen(false);
+    let data = {
+      "title": setTitle(e.target.title),
+        "message": setMessage(e.tartget.message)
+    }
+    axios_service.Update(data).then((result) => {
+      console.log(result);
+      this.setState({ redirect: "/dashBoard" });
+
+    }).catch((ex) => {
+      console.log(ex)
+    })
+
+  };
 
   return (
     <div>
@@ -51,27 +96,51 @@ export default function SpacingGrid(props) {
           {props.getnotes.slice(0).reverse().map((value) =>
 
             <Grid key={value.noteId} item>
-              { AreIconsOpen ?
-              
-              <Paper className={classes.paper} className = "paper"
-              onMouseLeave={changeBackground2}>
+              {AreIconsOpen ?
 
-                <div className = "title"> <h3>{value.title}</h3></div>
-                <div className = "message">{value.message}</div>
+                <Paper className={classes.paper} className="paper"
+                  onMouseLeave={changeBackground2} onClick={handleClickOpen}>
 
-                <IconsDisplayNote oneNote = {value}/>
+                  <div className="title"> <h3>{value.title}</h3></div>
+                  <div className="message">{value.message}</div>
 
-              </Paper>
+                  <IconsDisplayNote oneNote={value} />
 
-              :
+                  <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title"><h3>{value.title}</h3></DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        <div className="message">{value.message}</div>
+                      </DialogContentText>
+                      <form>
 
-              <Paper className={classes.paper}
-              onMouseEnter={changeBackground}>
+                        <div className="titlepin">
+                          <input type="text" placeholder="Title" name="title" onChange={handleChangeTitle} />
+                          <textarea name="content" placeholder="Take a note ......" onChange={handleChangeNote} />
+                        </div>
 
-                <div className = "title"> <h3>{value.title}</h3></div>
-                <div className = "message">{value.message}</div>
-              
-              </Paper>  
+                      </form>
+                    </DialogContent>
+                      <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                          Cancel
+                      </Button>
+                        <Button onClick={Update(value)} color="primary">
+                          Update
+                      </Button>
+                      </DialogActions>
+                  </Dialog>
+                </Paper>
+
+                :
+
+                <Paper className={classes.paper}
+                    onMouseEnter={changeBackground}>
+
+                    <div className="title"> <h3>{value.title}</h3></div>
+                    <div className="message">{value.message}</div>
+
+                  </Paper>
 
               }
             </Grid>
@@ -79,7 +148,7 @@ export default function SpacingGrid(props) {
           )}
         </Grid>
       </Grid>
-    
+
     </div>
   );
 }
