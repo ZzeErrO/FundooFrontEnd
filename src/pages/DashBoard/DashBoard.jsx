@@ -144,7 +144,13 @@ function MiniDrawer() {
   }, [])
 
   const GetNotes = () => {
-    axios_service.DisplayNote().then((result) => {
+    const token = {
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('id')}`
+      }
+  }
+    axios_service.DisplayNote(token).then((result) => {
       console.log(result.data);
       setNote(result.data);
       document.title = `FUNDOO`;

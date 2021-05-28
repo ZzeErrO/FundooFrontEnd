@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SpacingGrid(props) {
   const [spacing, setSpacing] = React.useState(2);
-  const [AreIconsOpen, setAreIconsOpen] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState();
   const [message, setMessage] = React.useState();
@@ -50,16 +49,6 @@ export default function SpacingGrid(props) {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const changeBackground = (x) => {
-    setAreIconsOpen(true);
-
-  };
-
-  const changeBackground2 = (x) => {
-    setAreIconsOpen(false);
-
   };
 
   const handleChangeTitle = (e) => {
@@ -75,8 +64,8 @@ export default function SpacingGrid(props) {
   const Update = (e) => {
     setOpen(false);
     let data = {
-      "title": setTitle(e.target.title),
-        "message": setMessage(e.tartget.message)
+      "title": {title},
+        "message": {message}
     }
     axios_service.Update(data).then((result) => {
       console.log(result);
@@ -96,53 +85,22 @@ export default function SpacingGrid(props) {
           {props.getnotes.slice(0).reverse().map((value) =>
 
             <Grid key={value.noteId} item>
-              {AreIconsOpen ?
 
-                <Paper className={classes.paper} className="paper"
-                  onMouseLeave={changeBackground2} onClick={handleClickOpen}>
+                <Paper className={classes.paper} className="paper">
 
+                  <div>
+
+                  <div className= "TitleMessage" onClick={handleClickOpen}>
                   <div className="title"> <h3>{value.title}</h3></div>
                   <div className="message">{value.message}</div>
+                  </div>
+                  
+                  <IconsDisplayNote oneNote={value} open= {open} handleClose = {handleClose}/>
 
-                  <IconsDisplayNote oneNote={value} />
+                  </div>
 
-                  <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title"><h3>{value.title}</h3></DialogTitle>
-                    <DialogContent>
-                      <DialogContentText>
-                        <div className="message">{value.message}</div>
-                      </DialogContentText>
-                      <form>
-
-                        <div className="titlepin">
-                          <input type="text" placeholder="Title" name="title" onChange={handleChangeTitle} />
-                          <textarea name="content" placeholder="Take a note ......" onChange={handleChangeNote} />
-                        </div>
-
-                      </form>
-                    </DialogContent>
-                      <DialogActions>
-                        <Button onClick={handleClose} color="primary">
-                          Cancel
-                      </Button>
-                        <Button onClick={Update(value)} color="primary">
-                          Update
-                      </Button>
-                      </DialogActions>
-                  </Dialog>
                 </Paper>
 
-                :
-
-                <Paper className={classes.paper}
-                    onMouseEnter={changeBackground}>
-
-                    <div className="title"> <h3>{value.title}</h3></div>
-                    <div className="message">{value.message}</div>
-
-                  </Paper>
-
-              }
             </Grid>
 
           )}

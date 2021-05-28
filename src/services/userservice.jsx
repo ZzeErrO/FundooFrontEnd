@@ -27,9 +27,9 @@ class Userservice {
         return axiosservice.postMethod(`${baseUrl}Notes`, data, confignote)
     }
 
-    DisplayNote = () => {
-        console.log(`${baseUrl}Notes`, confignote);
-        return axiosservice.getMethod(`${baseUrl}Notes`, confignote)
+    DisplayNote = (token) => {
+        console.log(`${baseUrl}Notes`, token);
+        return axiosservice.getMethod(`${baseUrl}Notes`, token)
     }
 
     MakeArchive = (data) => {

@@ -6,8 +6,8 @@ class Axios {
         return axios.post(url, data, isHeaderRequired)
     }
 
-    getMethod = (url, data, isHeaderRequired) => {
-        return axios.get(url, data, isHeaderRequired)
+    getMethod = (url, isHeaderRequired) => {
+        return axios.get(url, isHeaderRequired)
     }
 
     putMethod = (url, data, isHeaderRequired) => {

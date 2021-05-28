@@ -6,3 +6,12 @@
 
     width: 50px;
 }
+
+.BlankSpace{
+    height: 40px;
+}
+
+.InDialog{
+    display: flex;
+    flex-direction: column;
+}
