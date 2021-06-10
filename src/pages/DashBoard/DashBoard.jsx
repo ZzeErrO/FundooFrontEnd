@@ -149,6 +149,7 @@ function MiniDrawer() {
   const [open, setOpen] = React.useState(false);
   const [trash, setTrash] = React.useState(false);
   const [archive, setArchive] = React.useState(false);
+  const [redirect, setRedirect] = React.useState();
 
   const handleDrawerOpen = () => {
     setOpen(true);
