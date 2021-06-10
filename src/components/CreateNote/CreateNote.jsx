@@ -51,6 +51,10 @@ export default class registrationPage extends React.Component {
     this.setState({ toOpenNote: false });
   }
 
+  resetState = () => {
+    this.setState({Title : '', Note : ''})
+  }
+
   render() {
 
     return (
@@ -77,7 +81,7 @@ export default class registrationPage extends React.Component {
 
               <List className="IconsCreate">
 
-              <IconsCreateNote title = {this.state.Title} message = {this.state.Note} pin ={this.state.IsPin} isOpen = {this.handleChangeClose} />
+              <IconsCreateNote reset = {this.resetState} getNoteMethod = {this.props.getNoteMethod} title = {this.state.Title} message = {this.state.Note} pin ={this.state.IsPin} isOpen = {this.handleChangeClose} />
 
               </List>
 

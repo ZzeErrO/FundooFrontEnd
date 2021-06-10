@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './IconsCreateNote.css'
 
+import Icons from './Icons.jsx';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -15,10 +17,12 @@ import FiberPinOutlinedIcon from '@material-ui/icons/FiberPinOutlined';
 import Userservice from '../../services/userservice';
 const axios_service = new Userservice();
 
-export default class Icons extends Component {
+export default class IconsCreateNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      Title: '',
+      Note: '',
       Reminder: new Date(),
       Color: '',
       Image: '',
@@ -32,49 +36,27 @@ export default class Icons extends Component {
     }
   }
 
-  handleChangeReminder = () => {
-
+  static getDerivedStateFromProps(props, state){
+    return {Title : props.title, Note : props.message}
   }
 
-  handleChangeCollaborator = (e) => {
-    console.log(e.target.value);
-    this.setState({ Note: e.target.value })
-  }
-
-  handleChangeReminder = () => {
-
-  }
-  
-  handleChangeArchive = () => {
-
-      console.log(this.state.IsArchive)
-      this.setState({ IsArchive: true })
-  }
-
-
-
-
-
-
-
-  
   validation = () => {
     let isError = false;
     const errors = this.state;
-    errors.TitleError = this.props.title === '' ? true : false;
-    errors.NoteError = this.props.message === '' ? true : false;
+    errors.TitleError = this.state.Title === '' ? true : false;
+    errors.NoteError = this.state.Note === '' ? true : false;
     this.setState({
 
       ...errors
     })
-    return isError = (this.props.title !== '' && this.props.message !== '') ? true : false
+    return isError = (this.state.Title !== '' && this.state.Note !== '') ? true : false
   }
 
   handleChange2 = () => {
 
     var isValidated = this.validation();
-    console.log(this.props.title);
-    console.log(this.props.message);
+    console.log(this.state.Title);
+    console.log(this.state.Note);
     console.log(this.state.isArchive);
 
     if (isValidated) {
@@ -96,6 +78,8 @@ export default class Icons extends Component {
         this.props.isOpen();
         console.log(this.props);
         console.log(result);
+        this.props.getNoteMethod();
+        this.props.reset();
 
       }).catch((err) => {
         console.log(err);
@@ -112,32 +96,12 @@ export default class Icons extends Component {
   }
 
 
-
-
-
-
-
-
     render() {
 
         return (
             <div className = "Icons">
 
-                <ListItem button onChange={e => this.handleChangeReminder(e)} key="Index">
-                  <ListItemIcon>{<NotificationsNoneOutlinedIcon />}</ListItemIcon>
-                </ListItem>
-
-                <ListItem button onChange={e => this.handleChangeCollaborator(e)} key="Reminder">
-                  <ListItemIcon>{<PersonAddOutlinedIcon />}</ListItemIcon>
-                </ListItem>
-
-                <ListItem button onChange={e => this.handleChangeColor(e)} key="Edit Label">
-                  <ListItemIcon>{<ImageOutlinedIcon />}</ListItemIcon>
-                </ListItem>
-
-                <ListItem button onClick={this.handleChangeArchive} key="Archive">
-                  <ListItemIcon>{<ArchiveOutlinedIcon />}</ListItemIcon>
-                </ListItem>
+                <Icons/>
 
                 <ListItem button onClick={e => this.handleChange2()}>
                   Close

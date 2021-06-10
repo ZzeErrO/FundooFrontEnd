@@ -17,8 +17,6 @@
 }
 
 .searchIcon{
-    height: 7vh;
-    color: black;
     padding: 1px;
 }
 
@@ -59,6 +57,31 @@
     color: brown;
 }
 
+.MuiSvgIcon-root{
+    fill: grey !important;
+    width: 1em;
+    height: -15em;
+    display: inline-block;
+    font-size: 1.5rem;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    flex-shrink: 0;
+    user-select: none;
+
+}
+
+.IconsDisplay2{
+    margin-left: 50px;
+    width: 110px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.IconsDisplay3{
+    margin-left: 40px;
+    width: 50px;
+    display: flex;
+    justify-content: space-between;
+}
 
 @media screen and (max-width: 450px) {
 

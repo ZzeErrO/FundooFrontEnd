@@ -31,8 +31,8 @@ export default class UpdateNote extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          Title: this.props.oneNote.title,
-          Note: this.props.oneNote.message,
+          Title: '',
+          Note: '',
           Reminder: new Date(),
           Color: '',
           Image: '',
@@ -46,8 +46,12 @@ export default class UpdateNote extends Component {
         }
       }
 
+      static getDerivedStateFromProps(props, state){
+        return {Title : props.oneNote.title, Note : props.oneNote.message}
+      }
 
-      
+
+
   handleChangeTitle = (e) => {
     console.log(e.target.value);
     this.setState({ Title: e.target.value })
@@ -67,13 +71,13 @@ export default class UpdateNote extends Component {
         console.log(this.state.Title)
         let isError = false;
         const errors = this.state;
-        errors.TitleError = this.state.Title === '' ? true : false;
-        errors.NoteError = this.state.Note === '' ? true : false;
+        errors.TitleError = this.state.Title === this.props.oneNote.title ? true : false;
+        errors.NoteError = this.state.Note === this.props.oneNote.message ? true : false;
         this.setState({
     
           ...errors
         })
-        return isError = (this.state.Title !== '' && this.state.Note !== '') ? true : false
+        return isError = (this.state.Title !== this.props.oneNote.title && this.state.Note !== this.props.oneNote.message) ? true : false
       }
     
       handleChange2 = () => {
@@ -81,7 +85,6 @@ export default class UpdateNote extends Component {
         var isValidated = this.validation();
         console.log(this.state.Title);
         console.log(this.state.Note);
-        console.log(this.state.isArchive);
     
         if (isValidated) {
           this.setState({ toOpenNote: false });
@@ -101,6 +104,9 @@ export default class UpdateNote extends Component {
           console.log("validation successful");
           axios_service.Update(data).then((result) => {
             console.log(result);
+            this.props.handleClose();
+            this.props.getNoteMethod();
+            this.setState({Title : '', Note : ''})
     
           }).catch((err) => {
             console.log(err);
@@ -110,11 +116,10 @@ export default class UpdateNote extends Component {
     
         if(!isValidated){
           console.log("Not successful validation");
+          this.props.handleClose();
         }
     
       }
-
-
 
 
 
@@ -126,10 +131,10 @@ export default class UpdateNote extends Component {
                 <Dialog onClose={this.props.handleClose} aria-labelledby="simple-dialog-title" open={this.props.open} >
 
                     <div className="InDialog">
+                        
+                        <input className="inputupdate" defaultValue={this.state.Title} type="text" name="title" onChange={e => this.handleChangeTitle(e)} />
 
-                        <input className="inputupdate" value={this.props.oneNote.title} type="text" name="title" onChange={e => this.handleChangeTitle(e)} />
-
-                        <textarea className="textupdate" value={this.props.oneNote.message} name="content" onChange={e => this.handleChangeNote(e)} />
+                        <textarea className="textupdate" defaultValue={this.state.Note} name="content" onChange={e => this.handleChangeNote(e)} />
 
                         <div className="Icons">
 

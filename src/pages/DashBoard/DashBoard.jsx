@@ -1,9 +1,15 @@
-import React from  'react';
-import { Redirect, withRouter } from "react-router-dom";
+import React from 'react';
+import { Redirect, withRouter, Route, BrowserRouter } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import CreateNote from '../../components/CreateNote/CreateNote.jsx';
-import DisplayNote from '../../components/DisplayNote/DisplayNote.jsx';
+
+import './DashBoard.css';
+
+import Note from '../../components/Note/Note.jsx';
+import Trash from '../../components/Trash/Trash.jsx';
+import Archive from '../../components/Archive/Archive.jsx';
+
+import FUNDOO from '../../assets/fundoo.png';
 
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -32,6 +38,10 @@ import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneO
 import CreateRoundedIcon from '@material-ui/icons/CreateRounded';
 import ArchiveOutlinedIcon from '@material-ui/icons/ArchiveOutlined';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
+import RefreshOutlinedIcon from '@material-ui/icons/RefreshOutlined';
+import ViewStreamIcon from '@material-ui/icons/ViewStream';
+import AppsOutlinedIcon from '@material-ui/icons/AppsOutlined';
 
 
 import Userservice from '../../services/userservice';
@@ -41,7 +51,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    background: "white",
+    background: "white"
   },
   appBar: {
     background: "white",
@@ -52,20 +62,21 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'spaceBetween',
 
   },
-  appBarShift: {
+
+  /*appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-  },
+  },*/
 
-   search: {
-       display: 'flex',
-       flexDirection: 'row',
+  search: {
+    display: 'flex',
+    flexDirection: 'row',
     position: 'relative',
-    border: "1px solid transparent", 
+    border: "1px solid transparent",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: "#f1f3f4",
     height: "50px",
@@ -136,28 +147,8 @@ function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
-  const [notes, setNote] = React.useState([]);
-
-  React.useEffect(() => {
-    GetNotes();
-  }, [])
-
-  const GetNotes = () => {
-    const token = {
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('id')}`
-      }
-  }
-    axios_service.DisplayNote(token).then((result) => {
-      console.log(result.data);
-      setNote(result.data);
-      document.title = `FUNDOO`;
-    }).catch((err) => {
-      console.log(err);
-    })
-  }
+  const [trash, setTrash] = React.useState(false);
+  const [archive, setArchive] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -166,6 +157,20 @@ function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const toTrash = () => {
+    setTrash(true);
+  };
+
+  const toNote = () => {
+    setTrash(false);
+    setArchive(false);
+  };
+
+  const toArchive = () => {
+    setArchive(true);
+  };
+
 
 
   return (
@@ -178,32 +183,53 @@ function MiniDrawer() {
         })}
       >
         <Toolbar>
-          <IconButton
-            color="primary"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
+
+          {open ?
+
+            <IconButton
+              color="primary"
+              aria-label="open drawer"
+              onClick={handleDrawerClose}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                //  [classes.hide]: open,
+              })}
+            >
+              <MenuIcon />
+            </IconButton>
+
+            :
+
+            <IconButton
+              color="primary"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, {
+                //  [classes.hide]: open,
+              })}
+            >
+              <MenuIcon />
+            </IconButton>
+          }
+
+          <img src={FUNDOO} alt="Fundoo" />
+
           <Typography variant="h6" noWrap>
-          <div className = "fundoo">
-              <h4 id = "f">F</h4>
-              <h4 id = "u">U</h4>
-              <h4 id = "n">N</h4>
-              <h4 id = "d">D</h4>
-              <h4 id = "o">O</h4>
-              <h4 id = "x">O</h4>
-              </div>
+            <div className="fundoo">
+              <h4 id="f">F</h4>
+              <h4 id="u">U</h4>
+              <h4 id="n">N</h4>
+              <h4 id="d">D</h4>
+              <h4 id="o">O</h4>
+              <h4 id="x">O</h4>
+            </div>
           </Typography>
 
           <div className={classes.search}>
-            
-              <SearchIcon class = "searchIcon"/>
-            
+
+            <SearchIcon class="searchIcon" />
+
             <InputBase
               placeholder="Search"
               classes={{
@@ -212,10 +238,20 @@ function MiniDrawer() {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-            
+
+          </div>
+          <div className="IconsDisplay2">
+            <RefreshOutlinedIcon />
+            <ViewStreamIcon />
+            <SettingsOutlinedIcon />
+          </div>
+
+          <div className="IconsDisplay3">
+            <AppsOutlinedIcon />
           </div>
 
         </Toolbar>
+
       </AppBar>
       <Drawer
         variant="permanent"
@@ -229,45 +265,77 @@ function MiniDrawer() {
             [classes.drawerClose]: !open,
           }),
         }}
-       >
+      >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
-          <List>
-              <ListItem button key="Index">
-              <ListItemIcon>{<EmojiObjectsOutlinedIcon />}</ListItemIcon>
-              <ListItemText primary="Index" />
-              </ListItem>
-              <ListItem button key="Reminder">
-              <ListItemIcon>{<NotificationsNoneOutlinedIcon />}</ListItemIcon>
-              <ListItemText primary="Reminder" />
-              </ListItem>
-            <ListItem button key="Edit Label">
-              <ListItemIcon>{<CreateRoundedIcon />}</ListItemIcon>
-              <ListItemText primary="Edit Label" />
-            </ListItem>
-            <ListItem button key="Archive">
-              <ListItemIcon>{<ArchiveOutlinedIcon />}</ListItemIcon>
-              <ListItemText primary="Archive" />
-            </ListItem>
-            <ListItem button key="Bin">
-              <ListItemIcon>{<DeleteOutlinedIcon />}</ListItemIcon>
-              <ListItemText primary="Bin" />
-            </ListItem>
-          </List>
-        <Divider/>
+        <List>
+          <ListItem button key="Index" onClick={toNote}>
+            <ListItemIcon>{<EmojiObjectsOutlinedIcon />}</ListItemIcon>
+            <ListItemText primary="Index" />
+          </ListItem>
+          <ListItem button key="Reminder">
+            <ListItemIcon>{<NotificationsNoneOutlinedIcon />}</ListItemIcon>
+            <ListItemText primary="Reminder" />
+          </ListItem>
+          <ListItem button key="Edit Label">
+            <ListItemIcon>{<CreateRoundedIcon />}</ListItemIcon>
+            <ListItemText primary="Edit Label" />
+          </ListItem>
+          <ListItem button key="Archive" onClick={toArchive}>
+            <ListItemIcon>{<ArchiveOutlinedIcon />}</ListItemIcon>
+            <ListItemText primary="Archive" />
+          </ListItem>
+          <ListItem button key="Bin" onClick={toTrash}>
+            <ListItemIcon>{<DeleteOutlinedIcon />}</ListItemIcon>
+            <ListItemText primary="Bin" />
+          </ListItem>
+        </List>
+        <Divider />
       </Drawer>
+
       <main className={classes.content}>
         <div className={classes.toolbar} />
-            <CreateNote getNoteMethod={GetNotes}/>
-            <DisplayNote getnotes = {notes}/>
+
+        {trash ?
+          <>
+            {archive ?
+
+              <BrowserRouter>
+                <Route exact path="/archive" component={Archive} />
+              </BrowserRouter>
+
+              :
+
+              <BrowserRouter>
+                <Route exact path="/dashboard/trash" component={Trash} />
+              </BrowserRouter>
+
+            }
+          </>
+          :
+          <>
+
+            {archive ?
+
+              <BrowserRouter>
+                <Route exact path="/archive" component={Archive} />
+              </BrowserRouter>
+              :
+              <BrowserRouter>
+                <Route exact path="/dashboard" component={Note} />
+              </BrowserRouter>
+
+            }
+          </>
+        }
       </main>
     </div>
   );
 }
 
- 
+
 export default withRouter(MiniDrawer);

@@ -1,23 +1,32 @@
-import React from 'react'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import auth from "./LoginPage/LoginPage.jsx";
-
-export default function ProtectedRoute({component: Component, ...rest}) {
-
+import React from "react";
+import { Redirect, Route } from "react-router-dom";
+const renderMergedProps = (component, ...rest) => {
+    const finalProps = Object.assign({}, ...rest);
+    return React.createElement(component, finalProps);
+};
+// Private routing for secured paths
+const ProtectedRoute = ({ component, ...rest } ) => {
     return (
         <Route
-        {...rest}
-        render = {props => {
-            if (auth.validation()) {
-                console.log(auth.validation())
-                console.log(...props)
-                return <Component {...props}/>
-            }else{
-                return <Redirect to={{ pathname:"/", state: {from : props.location}}}/>
-            }
-        }}
-        
+            {...rest}
+            render={(props) => {
+                return localStorage.getItem("id") 
+                ?
+                (
+                    renderMergedProps(component, props, rest)
+                ) 
+                :
+                (
+                    <Redirect
+                        to={{
+                            pathname: "/",
+                            state: { from: props.location },
+                        }}
+                    />
+                );
+            }}
         />
-        
     );
-}
+};
+
+export default ProtectedRoute;

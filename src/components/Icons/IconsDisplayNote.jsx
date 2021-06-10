@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './IconsDisplayNote.css'
 
+import Icons from './Icons.jsx';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -54,7 +56,7 @@ export default class IconsDisplayNote extends Component {
       }
       axios_service.MakeArchive(data).then((result) => {
         console.log(result);
-        this.setState({ redirect: "/dashBoard" });
+        this.props.getNoteMethod();
 
       }).catch((ex) => {
         console.log(ex)
@@ -70,7 +72,7 @@ export default class IconsDisplayNote extends Component {
       }
       axios_service.MakeTrash(data).then((result) => {
         console.log(result);
-        this.setState({ redirect: "/dashBoard" });
+        this.props.getNoteMethod();
 
       }).catch((ex) => {
         console.log(ex)
@@ -86,22 +88,6 @@ export default class IconsDisplayNote extends Component {
   changeBackground2 = (x) => {
     this.setState({AreIconsOpen: false});
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     render() {
         return (

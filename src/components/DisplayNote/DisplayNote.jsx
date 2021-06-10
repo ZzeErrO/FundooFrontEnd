@@ -45,61 +45,39 @@ export default function SpacingGrid(props) {
 
   const classes = useStyles();
 
-  const handleClickOpen = (index) => {
-    setNote(index);
+  const handleClickOpen = (value) => {
+    console.log(value)
+    setNote(value);
     setOpen(true);
-    console.log(note)
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleChangeTitle = (e) => {
-    console.log(e.target.value);
-    setTitle( e.target.title )
-  }
+  React.useEffect(() => {
+    console.log("Hello")
+  }, [])
 
-  const handleChangeNote = (e) => {
-    console.log(e.target.value);
-    this.setState( e.target.message )
-  }
-
-  const Update = (e) => {
-    setOpen(false);
-    let data = {
-      "title": {title},
-        "message": {message}
-    }
-    axios_service.Update(data).then((result) => {
-      console.log(result);
-      this.setState({ redirect: "/dashBoard" });
-
-    }).catch((ex) => {
-      console.log(ex)
-    })
-
-  };
 
   return (
     <div>
 
       <Grid item xs={12}>
         <Grid container justify="flex-start" spacing={spacing}>
-          {props.getnotes.slice(0).reverse().map((value, index) =>
-
+          {props.getnotes.map((value, index) =>
+            
             <Grid key={value.noteId} item>
 
                 <Paper className={classes.paper} className="paper">
 
                   <div>
-
                   <div className= "TitleMessage" onClick={() => handleClickOpen(value)}>
                   <div className="title"> <h3>{value.title}</h3></div>
                   <div className="message">{value.message}</div>
                   </div>
                   
-                  <IconsDisplayNote oneNote={value}/>
+                  <IconsDisplayNote oneNote={value} getNoteMethod={props.getNoteMethod}/>
 
                   </div>
 
@@ -111,7 +89,7 @@ export default function SpacingGrid(props) {
         </Grid>
       </Grid>
 
-      <UpdateNote oneNote = {note} open ={open} handleClose = {handleClose}/>
+      <UpdateNote oneNote = {note} open ={open} handleClose = {handleClose} getNoteMethod={props.getNoteMethod}/>
 
     </div>
   );
