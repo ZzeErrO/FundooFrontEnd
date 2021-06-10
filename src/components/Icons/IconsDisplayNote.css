@@ -14,4 +14,17 @@
 .InDialog{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    width: 600px;
+    border-radius: 10px;
+
+}
+
+.inputupdate{
+    border: 1px solid white;
+}
+
+.textupdate{
+    border: 1px solid white;
 }

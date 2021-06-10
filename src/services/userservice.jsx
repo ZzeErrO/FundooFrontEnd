@@ -24,6 +24,7 @@ class Userservice {
 
     AddNote = (data) => {
         console.log(`${baseUrl}Notes`, data, confignote);
+        console.log(localStorage.getItem('id'))
         return axiosservice.postMethod(`${baseUrl}Notes`, data, confignote)
     }
 

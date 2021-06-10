@@ -3,6 +3,7 @@ import './DisplayNote.css';
 import Userservice from '../../services/userservice';
 
 import IconsDisplayNote from '../Icons/IconsDisplayNote';
+import UpdateNote from '../UpdateNote/UpdateNote.jsx';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -40,11 +41,14 @@ export default function SpacingGrid(props) {
   const [open, setOpen] = React.useState(false);
   const [title, setTitle] = React.useState();
   const [message, setMessage] = React.useState();
+  const [note, setNote] = React.useState({});
 
   const classes = useStyles();
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (index) => {
+    setNote(index);
     setOpen(true);
+    console.log(note)
   };
 
   const handleClose = () => {
@@ -82,7 +86,7 @@ export default function SpacingGrid(props) {
 
       <Grid item xs={12}>
         <Grid container justify="flex-start" spacing={spacing}>
-          {props.getnotes.slice(0).reverse().map((value) =>
+          {props.getnotes.slice(0).reverse().map((value, index) =>
 
             <Grid key={value.noteId} item>
 
@@ -90,12 +94,12 @@ export default function SpacingGrid(props) {
 
                   <div>
 
-                  <div className= "TitleMessage" onClick={handleClickOpen}>
+                  <div className= "TitleMessage" onClick={() => handleClickOpen(value)}>
                   <div className="title"> <h3>{value.title}</h3></div>
                   <div className="message">{value.message}</div>
                   </div>
                   
-                  <IconsDisplayNote oneNote={value} open= {open} handleClose = {handleClose}/>
+                  <IconsDisplayNote oneNote={value}/>
 
                   </div>
 
@@ -106,6 +110,8 @@ export default function SpacingGrid(props) {
           )}
         </Grid>
       </Grid>
+
+      <UpdateNote oneNote = {note} open ={open} handleClose = {handleClose}/>
 
     </div>
   );
