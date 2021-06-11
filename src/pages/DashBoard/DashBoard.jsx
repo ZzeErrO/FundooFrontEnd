@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, withRouter, Route, BrowserRouter } from "react-router-dom";
+import { Redirect, Route, useHistory, Switch } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
@@ -147,9 +147,12 @@ function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [trash, setTrash] = React.useState(false);
-  const [archive, setArchive] = React.useState(false);
-  const [redirect, setRedirect] = React.useState();
+  // const [note, setNote] = React.useState("/dashboard");
+  // const [trash, setTrash] = React.useState("/dashboard/trash");
+  // const [archive, setArchive] = React.useState("/dashborad/archive");
+  // const [redirect, setRedirect] = React.useState("/dashboard");
+
+  let history = useHistory();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -159,22 +162,21 @@ function MiniDrawer() {
     setOpen(false);
   };
 
-  const toTrash = () => {
-    setTrash(true);
+  const handleChangePath = (value) => {
+   if (value === "archive") {
+     history.push("/dashboard/archive")
+   }
+   else if (value === "trash") {
+    history.push("/dashboard/trash")
+  }
+  else if(value === "dashboard") {
+    history.push("/dashboard")
+  }
+
   };
-
-  const toNote = () => {
-    setTrash(false);
-    setArchive(false);
-  };
-
-  const toArchive = () => {
-    setArchive(true);
-  };
-
-
 
   return (
+
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
@@ -274,7 +276,7 @@ function MiniDrawer() {
         </div>
         <Divider />
         <List>
-          <ListItem button key="Index" onClick={toNote}>
+          <ListItem button key="Index" onClick={() =>handleChangePath("dashboard")}>
             <ListItemIcon>{<EmojiObjectsOutlinedIcon />}</ListItemIcon>
             <ListItemText primary="Index" />
           </ListItem>
@@ -286,11 +288,11 @@ function MiniDrawer() {
             <ListItemIcon>{<CreateRoundedIcon />}</ListItemIcon>
             <ListItemText primary="Edit Label" />
           </ListItem>
-          <ListItem button key="Archive" onClick={toArchive}>
+          <ListItem button key="Archive" onClick={() =>handleChangePath("archive")}>
             <ListItemIcon>{<ArchiveOutlinedIcon />}</ListItemIcon>
             <ListItemText primary="Archive" />
           </ListItem>
-          <ListItem button key="Bin" onClick={toTrash}>
+          <ListItem button key="Bin" onClick={()=>handleChangePath("trash")}>
             <ListItemIcon>{<DeleteOutlinedIcon />}</ListItemIcon>
             <ListItemText primary="Bin" />
           </ListItem>
@@ -300,43 +302,16 @@ function MiniDrawer() {
 
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        <Switch>
+        <Route exact path="/dashboard" component={Note} />
+        <Route  path="/dashboard/archive" component={Archive} />
+        <Route  path="/dashboard/trash" component={Trash} />
+        </Switch>
 
-        {trash ?
-          <>
-            {archive ?
-
-              <BrowserRouter>
-                <Route exact path="/archive" component={Archive} />
-              </BrowserRouter>
-
-              :
-
-              <BrowserRouter>
-                <Route exact path="/dashboard/trash" component={Trash} />
-              </BrowserRouter>
-
-            }
-          </>
-          :
-          <>
-
-            {archive ?
-
-              <BrowserRouter>
-                <Route exact path="/archive" component={Archive} />
-              </BrowserRouter>
-              :
-              <BrowserRouter>
-                <Route exact path="/dashboard" component={Note} />
-              </BrowserRouter>
-
-            }
-          </>
-        }
       </main>
     </div>
   );
 }
 
 
-export default withRouter(MiniDrawer);
+export default MiniDrawer;

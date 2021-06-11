@@ -33,6 +33,16 @@ class Userservice {
         return axiosservice.getMethod(`${baseUrl}Notes`, token)
     }
 
+    TrashNote = (token) => {
+        console.log(`${baseUrl}Notes/Trash`, token);
+        return axiosservice.getMethod(`${baseUrl}Notes/Trash`, token)
+    }
+
+    ArchiveNote = (token) => {
+        console.log(`${baseUrl}Notes/Archive`, token);
+        return axiosservice.getMethod(`${baseUrl}Notes/Archive`, token)
+    }
+
     MakeArchive = (data) => {
         console.log(`${baseUrl}Notes/${data.noteId}/Archive`, confignote);
         return axiosservice.putMethod(`${baseUrl}Notes/${data.noteId}/Archive`, data, confignote)
@@ -46,6 +56,11 @@ class Userservice {
     Update = (data) => {
         console.log(`${baseUrl}Notes/${data.noteId}`, data, confignote);
         return axiosservice.putMethod(`${baseUrl}Notes/${data.noteId}`, data, confignote)
+    }
+
+    DeleteForever = (data) => {
+        console.log(`${baseUrl}Notes/${data.noteId}`, confignote);
+        return axiosservice.deleteMethod(`${baseUrl}Notes/${data.noteId}`, confignote)
     }
 
 }
