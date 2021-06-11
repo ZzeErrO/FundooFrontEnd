@@ -49,7 +49,9 @@ export default class Trash extends Component {
 
             console.log(result.data);
 
-            this.setState({ TrashNotes: result.data });
+            this.setState({ TrashNotes: result.data.map((obj)=> ( obj = { ...obj, icons: false } )) });
+
+            console.log(this.state.TrashNotes);
 
         }).catch((err) => {
             console.log(err);
@@ -59,17 +61,31 @@ export default class Trash extends Component {
 
     Delete = (id) => {
 
-        console.log()
+        axios_service.DeleteForever(id).then((result) => {
+
+            console.log(result);
+
+        }).catch((err) => {
+            console.log(err);
+        })
 
     }
 
-    changeBackground = (x) => {
-        this.setState({ AreIconsOpen: true });
+    changeBackground = (index) => {
 
+         let newArray = [...this.state.TrashNotes]
+
+         newArray[index] = {...newArray[index], icons : true}
+
+         this.setState({TrashNotes: newArray});
     };
 
-    changeBackground2 = (x) => {
-        this.setState({ AreIconsOpen: false });
+    changeBackground2 = (index) => {
+        let newArray = [...this.state.TrashNotes]
+
+         newArray[index] = {...newArray[index], icons : false}
+
+         this.setState({TrashNotes: newArray});
     };
 
     render() {
@@ -93,21 +109,21 @@ export default class Trash extends Component {
                                         </div>
 
 
-                                        {this.state.AreIconsOpen
+                                        {value.icons
 
                                             ?
 
-                                            <List className="Icons" onMouseLeave={this.changeBackground2}>
-                                                <ListItem button onClick={this.Delete(value.noteId)} key="Archive">
+                                            <List className="Icons" onMouseLeave={() => this.changeBackground2(index)}>
+                                                <ListItem button key="Archive">
 
-                                                    <ListItemIcon> <DeleteForeverOutlinedIcon /></ListItemIcon>
+                                                    <ListItemIcon> <DeleteForeverOutlinedIcon button onClick={()=>this.Delete(value.noteId)} /></ListItemIcon>
                                                 
                                                 </ListItem>
                                             </List>
 
                                             :
 
-                                            <div onMouseEnter={this.changeBackground} className="BlankSpace"></div>
+                                            <div onMouseEnter={() => this.changeBackground(index)} className="BlankSpace"></div>
 
                                         }
 
