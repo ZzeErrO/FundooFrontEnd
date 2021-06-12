@@ -12,6 +12,9 @@ import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import FiberPinOutlinedIcon from '@material-ui/icons/FiberPinOutlined';
 
+import Userservice from '../../services/userservice';
+const axios_service = new Userservice();
+
 export default class Icons extends Component {
     constructor(props) {
         super(props);
@@ -29,37 +32,34 @@ export default class Icons extends Component {
         }
       }
 
-    handleChangeReminder = () => {
-
-    }
-  
-    handleChangeCollaborator = (e) => {
-      console.log(e.target.value);
-      this.setState({ Collaborator: e.target.value })
-    }
-  
-    handleChangeColor = () => {
-  
-    }
-    
     handleChangeArchive = () => {
+
+      this.setState({ IsArchive: true })
+      let data = {
+        "noteId": this.props.oneNote.noteId,
+      }
+      axios_service.MakeArchive(data).then((result) => {
+        console.log(result);
+        this.props.getNoteMethod();
   
-        console.log(this.state.IsArchive)
-        this.setState({ IsArchive: true })
-    }
+      }).catch((ex) => {
+        console.log(ex)
+      })
+    
+  }
 
     render() {
         return (
             <>
-                <ListItem button onChange={e => this.handleChangeReminder(e)} key="Index">
+                <ListItem button key="Index">
                   <ListItemIcon>{<NotificationsNoneOutlinedIcon />}</ListItemIcon>
                 </ListItem>
 
-                <ListItem button onChange={e => this.handleChangeCollaborator(e)} key="Reminder">
+                <ListItem button key="Reminder">
                   <ListItemIcon>{<PersonAddOutlinedIcon />}</ListItemIcon>
                 </ListItem>
 
-                <ListItem button onChange={e => this.handleChangeColor(e)} key="Edit Label">
+                <ListItem button key="Edit Label">
                   <ListItemIcon>{<ImageOutlinedIcon />}</ListItemIcon>
                 </ListItem>
 

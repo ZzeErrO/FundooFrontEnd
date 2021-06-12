@@ -77,6 +77,10 @@ form textarea
     resize: none;
 }
 
+.Icons{
+    display: flex;
+}
+
 
 @media screen and (max-width: 500px) {
 

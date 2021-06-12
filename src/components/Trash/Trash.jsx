@@ -65,6 +65,8 @@ export default class Trash extends Component {
 
             console.log(result);
 
+            this.getTrashNotes();
+
         }).catch((err) => {
             console.log(err);
         })

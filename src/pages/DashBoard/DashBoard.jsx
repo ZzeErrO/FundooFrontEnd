@@ -147,10 +147,6 @@ function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  // const [note, setNote] = React.useState("/dashboard");
-  // const [trash, setTrash] = React.useState("/dashboard/trash");
-  // const [archive, setArchive] = React.useState("/dashborad/archive");
-  // const [redirect, setRedirect] = React.useState("/dashboard");
 
   let history = useHistory();
 
@@ -163,15 +159,18 @@ function MiniDrawer() {
   };
 
   const handleChangePath = (value) => {
-   if (value === "archive") {
-     history.push("/dashboard/archive")
-   }
-   else if (value === "trash") {
-    history.push("/dashboard/trash")
-  }
-  else if(value === "dashboard") {
-    history.push("/dashboard")
-  }
+
+    history.push(`/dashboard${value}`);
+
+  //  if (value === "archive") {
+  //    history.push("/dashboard/archive")
+  //  }
+  //  else if (value === "trash") {
+  //   history.push("/dashboard/trash")
+  // }
+  // else if(value === "dashboard") {
+  //   history.push("/dashboard")
+  // }
 
   };
 
@@ -276,7 +275,7 @@ function MiniDrawer() {
         </div>
         <Divider />
         <List>
-          <ListItem button key="Index" onClick={() =>handleChangePath("dashboard")}>
+          <ListItem button key="Index" onClick={() =>handleChangePath("")}>
             <ListItemIcon>{<EmojiObjectsOutlinedIcon />}</ListItemIcon>
             <ListItemText primary="Index" />
           </ListItem>
@@ -288,11 +287,11 @@ function MiniDrawer() {
             <ListItemIcon>{<CreateRoundedIcon />}</ListItemIcon>
             <ListItemText primary="Edit Label" />
           </ListItem>
-          <ListItem button key="Archive" onClick={() =>handleChangePath("archive")}>
+          <ListItem button key="Archive" onClick={() =>handleChangePath("/archive")}>
             <ListItemIcon>{<ArchiveOutlinedIcon />}</ListItemIcon>
             <ListItemText primary="Archive" />
           </ListItem>
-          <ListItem button key="Bin" onClick={()=>handleChangePath("trash")}>
+          <ListItem button key="Bin" onClick={()=>handleChangePath("/trash")}>
             <ListItemIcon>{<DeleteOutlinedIcon />}</ListItemIcon>
             <ListItemText primary="Bin" />
           </ListItem>

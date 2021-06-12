@@ -2,10 +2,60 @@
     width: 250px;
 }
 
+.Icons2{
+    display: flex;
+    width: 250px;
+}
+
+.Items2{
+    display: flex;
+    width: 50px;
+}
+
+.Items3{
+    display: flex;
+    width: 50px;
+
+    margin-left: 150px;
+}
 
 
 @media screen and (max-width: 500px) {
 .paper{
     width: 400px;
 }
+}
+
+
+
+
+.Icons{
+    display: flex;
+}
+
+.Items{
+
+    width: 50px;
+}
+
+.BlankSpace{
+    height: 40px;
+}
+
+.InDialog{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    width: 600px;
+    border-radius: 10px;
+
+}
+
+.inputupdate{
+    border: 1px solid white;
+}
+
+.textupdate{
+    border: 1px solid white;
 }

@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 
 import Userservice from '../../services/userservice.jsx';
 
+import './Archive.css'
+
 import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 
-import IconsDisplayNote from '../Icons/IconsDisplayNote.jsx';
+import Icons from '../Icons/Icons.jsx';
 
 const axios_service = new Userservice();
 
@@ -47,22 +52,46 @@ export default class Archive extends Component {
 
             console.log(result.data);
 
-            this.setState({ ArchiveNotes: result.data });
+            this.setState({ ArchiveNotes: result.data.map((obj)=> ( obj = { ...obj, icons: false } )) });
 
         }).catch((err) => {
             console.log(err);
         })
 
     }
+
+    handleChangeTrash = (id) => {
+
+        let data = {
+          "noteId": id
+        }
+        axios_service.MakeTrash(data).then((result) => {
+          console.log(result);
+          this.getArchiveNotes();
+  
+        }).catch((ex) => {
+          console.log(ex)
+        })
+      
+    }
     
-    changeBackground = (x) => {
-        this.setState({AreIconsOpen: true});
-    
-      };
-    
-      changeBackground2 = (x) => {
-        this.setState({AreIconsOpen: false});
-      };
+
+    changeBackground = (index) => {
+        let newArray = [...this.state. ArchiveNotes]
+
+         newArray[index] = {...newArray[index], icons : true}
+
+         this.setState({ ArchiveNotes: newArray});
+
+    };
+
+    changeBackground2 = (index) => {
+        let newArray = [...this.state. ArchiveNotes]
+
+         newArray[index] = {...newArray[index], icons : false}
+
+         this.setState({ ArchiveNotes: newArray});
+    };
 
     render() {
         return (
@@ -85,15 +114,25 @@ export default class Archive extends Component {
                                         </div>
 
 
-                                        {this.state.AreIconsOpen 
-                                        
+                                        {value.icons
+
                                             ?
 
-                                            <IconsDisplayNote oneNote={value} getNoteMethod={this.getArchiveNotes}/>
+                                            <div className = "Archive2" onMouseLeave={() => this.changeBackground2(index)}>
+                                                <div className="Items2">
+                                                    <Icons oneNote={value} getNoteMethod={this.props.getNoteMethod} />
+                                                </div>
+
+                                                <div className="Items3">
+                                                    <ListItem button onClick={() => this.handleChangeTrash(value.noteId)} key="Bin">
+                                                        <ListItemIcon>{<DeleteOutlinedIcon />}</ListItemIcon>
+                                                    </ListItem>
+                                                </div>
+                                            </div>
 
                                             :
 
-                                            <div onMouseEnter={this.changeBackground} className="BlankSpace"></div>
+                                            <div onMouseEnter={() => this.changeBackground(index)} className="BlankSpace"></div>
 
                                         }
 

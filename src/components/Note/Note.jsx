@@ -25,7 +25,7 @@ export default function Note() {
         axios_service.DisplayNote(token).then((result) => {
 
           console.log(result.data);
-          setNote(result.data);
+          Promise.resolve(setNote(result.data.map((obj)=> ( obj = { ...obj, icons: false } ))));
 
         }).catch((err) => {
           console.log(err);
@@ -35,7 +35,7 @@ export default function Note() {
     return (
         <>
             <CreateNote getNoteMethod={GetNotes}/>
-            <DisplayNote getnotes = {notes} getNoteMethod={GetNotes}/>
+            <DisplayNote/>
         </>
     )
 }

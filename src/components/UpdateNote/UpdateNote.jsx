@@ -54,7 +54,8 @@ export default class UpdateNote extends Component {
 
   handleChangeTitle = (e) => {
     console.log(e.target.value);
-    this.setState({ Title: e.target.value })
+    this.setState({ Title: e.target.value });
+    console.log(this.state.Title);
   }
 
   handleChangeNote = (e) => {
@@ -67,8 +68,6 @@ export default class UpdateNote extends Component {
 
 
     validation = () => {
-
-        console.log(this.state.Title)
         let isError = false;
         const errors = this.state;
         errors.TitleError = this.state.Title === this.props.oneNote.title ? true : false;
@@ -77,7 +76,7 @@ export default class UpdateNote extends Component {
     
           ...errors
         })
-        return isError = (this.state.Title !== this.props.oneNote.title && this.state.Note !== this.props.oneNote.message) ? true : false
+        return isError = (this.state.Title !== this.props.oneNote.title || this.state.Note !== this.props.oneNote.message) ? true : false
       }
     
       handleChange2 = () => {
