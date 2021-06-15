@@ -47,15 +47,20 @@ export default class UpdateNote extends Component {
       }
 
       static getDerivedStateFromProps(props, state){
+        if(state.Title !== props.oneNote.title){
         return {Title : props.oneNote.title, Note : props.oneNote.message}
+        }
+        return null;
       }
 
 
+      componentDidUpdate(){
+
+      }
 
   handleChangeTitle = (e) => {
     console.log(e.target.value);
-    this.setState({ Title: e.target.value });
-    console.log(this.state.Title);
+    this.setState({Title : e.target.value});
   }
 
   handleChangeNote = (e) => {
@@ -82,7 +87,7 @@ export default class UpdateNote extends Component {
       handleChange2 = () => {
     
         var isValidated = this.validation();
-        console.log(this.state.Title);
+        console.log(this.state.Title, this.props.oneNote.title);
         console.log(this.state.Note);
     
         if (isValidated) {

@@ -98,7 +98,7 @@ form textarea
 
 form{
     position: relative;
-    width:300px;
+    width:266px;
     margin:32px auto 50px auto;
     background: #fff;
     padding: 7px;
@@ -106,5 +106,13 @@ form{
     box-shadow: 0 1px 5px rgb(128,128,128);
     
 }
+
+.MuiListItemIcon-root {
+    color: rgba(0, 0, 0, 0.54);
+    display: inline-flex;
+    min-width: 56px !important;
+    flex-shrink: 0;
+}
+
 
 }

@@ -19,6 +19,7 @@ export default class Archive extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            notes: [],
             spacing: 2,
             ArchiveNotes: [],
             Title: '',
@@ -40,6 +41,23 @@ export default class Archive extends Component {
     componentDidMount() {
         this.getArchiveNotes();
     }
+
+    GetNotes = () => {
+        let token = {
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('id')}`
+          }
+      }
+        axios_service.DisplayNote(token).then((result) => {
+
+          console.log(result.data);
+          Promise.resolve(this.setState({ notes : result.data.map((obj)=> ( obj = { ...obj, icons: false } )) }));
+
+        }).catch((err) => {
+          console.log(err);
+        })
+      }
 
     getArchiveNotes = () => {
         const token = {
@@ -120,7 +138,7 @@ export default class Archive extends Component {
 
                                             <div className = "Archive2" onMouseLeave={() => this.changeBackground2(index)}>
                                                 <div className="Items2">
-                                                    <Icons oneNote={value} getNoteMethod={this.props.getNoteMethod} />
+                                                    <Icons oneNote={value} getNoteMethod={this.GetNotes} />
                                                 </div>
 
                                                 <div className="Items3">

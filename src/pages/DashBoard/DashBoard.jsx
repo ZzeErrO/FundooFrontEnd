@@ -138,6 +138,7 @@ const useStyles = makeStyles((theme) => ({
 
     padding: theme.spacing(3),
   },
+  
 }));
 
 
@@ -161,16 +162,6 @@ function MiniDrawer() {
   const handleChangePath = (value) => {
 
     history.push(`/dashboard${value}`);
-
-  //  if (value === "archive") {
-  //    history.push("/dashboard/archive")
-  //  }
-  //  else if (value === "trash") {
-  //   history.push("/dashboard/trash")
-  // }
-  // else if(value === "dashboard") {
-  //   history.push("/dashboard")
-  // }
 
   };
 

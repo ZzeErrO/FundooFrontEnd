@@ -43,9 +43,19 @@ class Userservice {
         return axiosservice.getMethod(`${baseUrl}Notes/Archive`, token)
     }
 
+    MakeColor = (data) => {
+        console.log(`${baseUrl}Notes/${data.noteId}/${data.color}`, data, confignote);
+        return axiosservice.putMethod(`${baseUrl}Notes/${data.noteId}/${data.color}`, data, confignote)
+    }
+
     MakeArchive = (data) => {
         console.log(`${baseUrl}Notes/${data.noteId}/Archive`, confignote);
         return axiosservice.putMethod(`${baseUrl}Notes/${data.noteId}/Archive`, data, confignote)
+    }
+
+    UnArchiveOrUntrash = (data) => {
+        console.log(`${baseUrl}Notes/${data.noteId}/UnArchiveOrUnTrash`, confignote);
+        return axiosservice.putMethod(`${baseUrl}Notes/${data.noteId}/UnArchiveOrUnTrash`, data, confignote)
     }
 
     MakeTrash = (data) => {

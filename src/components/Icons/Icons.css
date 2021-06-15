@@ -1,0 +1,19 @@
+.ColorsPlusIcons{
+    position: relative;
+}
+.ColorIcon{
+    position: absolute;
+}
+
+.AllColor{
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+}
+
+#mouse-over-popover{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80px;
+    height: 60px;
+}

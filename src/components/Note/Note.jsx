@@ -35,7 +35,7 @@ export default function Note() {
     return (
         <>
             <CreateNote getNoteMethod={GetNotes}/>
-            <DisplayNote/>
+            <DisplayNote oneNote = {notes} getNoteMethod={GetNotes}/>
         </>
     )
 }

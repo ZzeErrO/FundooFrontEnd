@@ -131,7 +131,7 @@ const changeBackground2 = (index) => {
 
             <Grid key={value.noteId} item>
 
-              <Paper className={classes.paper} className="paper">
+              <Paper className={classes.paper} className="paper" style={{ backgroundColor: `${value.color}` }}>
 
                 <div>
                   <div className="TitleMessage" onClick={() => handleClickOpen(value)}>

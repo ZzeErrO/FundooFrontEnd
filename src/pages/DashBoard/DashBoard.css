@@ -83,19 +83,23 @@
     justify-content: space-between;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 600px){
+    .makeStyles-search-3 {
+        width: 150px !important;
+        border: 1px solid transparent;
+        height: 50px;
+        display: flex;
+        padding: 10px;
+        position: relative;
+        margin-left: 0px !important;
+        border-radius: 8px;
+        flex-direction: row;
+        background-color: #f1f3f4;
+    }
 
-.search {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    border: 1px solid transparent;
-    background-color: #f1f3f4;
-    height: 50px;
-    margin-left: 100px;
-    border-radius: 8px;
-    position: relative;
-    width: 750px;
-    padding: 10px
-}
+    .MuiListItem-gutters {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    
 }

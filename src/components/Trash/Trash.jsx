@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 
 const axios_service = new Userservice();
 
@@ -49,9 +50,26 @@ export default class Trash extends Component {
 
             console.log(result.data);
 
-            this.setState({ TrashNotes: result.data.map((obj)=> ( obj = { ...obj, icons: false } )) });
+            this.setState({ TrashNotes: result.data.map((obj) => (obj = { ...obj, icons: false })) });
 
             console.log(this.state.TrashNotes);
+
+        }).catch((err) => {
+            console.log(err);
+        })
+
+    }
+
+    UnDelete = (id) => {
+        let data = {
+            "noteId": id,
+          }
+
+        axios_service.UnArchiveOrUntrash(data).then((result) => {
+
+            console.log(result);
+
+            this.getTrashNotes();
 
         }).catch((err) => {
             console.log(err);
@@ -75,19 +93,19 @@ export default class Trash extends Component {
 
     changeBackground = (index) => {
 
-         let newArray = [...this.state.TrashNotes]
+        let newArray = [...this.state.TrashNotes]
 
-         newArray[index] = {...newArray[index], icons : true}
+        newArray[index] = { ...newArray[index], icons: true }
 
-         this.setState({TrashNotes: newArray});
+        this.setState({ TrashNotes: newArray });
     };
 
     changeBackground2 = (index) => {
         let newArray = [...this.state.TrashNotes]
 
-         newArray[index] = {...newArray[index], icons : false}
+        newArray[index] = { ...newArray[index], icons: false }
 
-         this.setState({TrashNotes: newArray});
+        this.setState({ TrashNotes: newArray });
     };
 
     render() {
@@ -116,10 +134,17 @@ export default class Trash extends Component {
                                             ?
 
                                             <List className="Icons" onMouseLeave={() => this.changeBackground2(index)}>
-                                                <ListItem button key="Archive">
 
-                                                    <ListItemIcon> <DeleteForeverOutlinedIcon button onClick={()=>this.Delete(value.noteId)} /></ListItemIcon>
-                                                
+                                                <ListItem button key="UnDelete">
+
+                                                    <ListItemIcon> <DeleteOutlinedIcon button onClick={() => this.UnDelete(value.noteId)} /></ListItemIcon>
+
+                                                </ListItem>
+
+                                                <ListItem button key="Delete">
+
+                                                    <ListItemIcon> <DeleteForeverOutlinedIcon button onClick={() => this.Delete(value.noteId)} /></ListItemIcon>
+
                                                 </ListItem>
                                             </List>
 

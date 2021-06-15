@@ -20,13 +20,15 @@
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
 .paper{
-    width: 400px;
-}
+    width: 100px !important;
 }
 
-
+.TitleMessage {
+    width: 100px !important;
+}
+}
 
 
 .Icons{
